@@ -2108,3 +2108,179 @@ html.no-anim .anim-toggle *::before,
 html.no-anim .anim-toggle *::after {
   transition: background-color .2s ease, border-color .2s ease, transform .2s ease !important;
 }
+
+
+/* ==========================================================
+   NANOVAS — Adaptación para celulares y tablets
+   Bloque añadido al FINAL del archivo. No modifica ninguna
+   regla anterior: todo está dentro de @media (max-width) o
+   (hover: none), por eso en PC no cambia nada.
+   ========================================================== */
+
+/* Evita que iOS agrande el texto al girar el celular. */
+html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+
+/* ---------- Tablets y celulares (hasta 960px) ---------- */
+@media (max-width: 960px) {
+  /* Las columnas del grid pueden encogerse en vez de ensanchar la página. */
+  .hero-grid > * { min-width: 0; }
+
+  /* La tarjeta de redes no se estira de borde a borde en tablets. */
+  .hero-social-card { max-width: 680px; margin-inline: auto; }
+
+  /* Respeta el notch del celular al girarlo (en PC vale 0). */
+  main {
+    padding-left: env(safe-area-inset-left, 0px);
+    padding-right: env(safe-area-inset-right, 0px);
+  }
+  footer { padding-bottom: calc(36px + env(safe-area-inset-bottom, 0px)); }
+}
+
+/* ---------- Menú hamburguesa (hasta 900px) ---------- */
+@media (max-width: 900px) {
+  /* Si el menú es más alto que la pantalla (celular horizontal), se desplaza. */
+  .nav-menu {
+    max-height: calc(100vh - 80px);
+    max-height: calc(100dvh - 80px);
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    padding-bottom: calc(20px + env(safe-area-inset-bottom, 0px));
+  }
+  .nav-link { min-height: 46px; }
+}
+
+/* ---------- Configuración de IP en Soporte (hasta 860px) ---------- */
+/* Con 2 columnas la IP quedaba muy angosta y se partía letra por letra. */
+@media (max-width: 860px) {
+  .support-connect .ip-card { grid-template-columns: 1fr; }
+  .support-connect .ip-note { grid-column: auto; }
+}
+
+/* ---------- Celulares (hasta 700px) ---------- */
+@media (max-width: 700px) {
+  /* Índice de Política: 2 columnas en vez de 8 filas largas. */
+  .pol-toc { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 6px; }
+  .pol-toc a {
+    padding: 9px 10px;
+    font-size: .8rem;
+    background: rgba(255,255,255,.03);
+    border-color: rgba(255,255,255,.08);
+  }
+
+  /* Botones de copiar más fáciles de tocar. */
+  .ip-copy-btn { min-height: 42px; }
+}
+
+/* ---------- Celulares (hasta 600px) ---------- */
+@media (max-width: 600px) {
+  .page-section { padding: 28px 0 56px; }
+  .section-heading { margin-bottom: 32px; }
+  #soporte .section-heading,
+  #reglas .section-heading,
+  #politica .section-heading { margin-bottom: 8px; }
+
+  /* El selector de colores no puede ser más alto que la pantalla. */
+  .theme-dropdown {
+    max-height: calc(100vh - 104px);
+    max-height: calc(100dvh - 104px);
+    overflow-y: auto;
+    overscroll-behavior: contain;
+  }
+  .theme-swatch { min-height: 64px; }
+
+  .ip-note { font-size: .78rem; }
+  .mp-stat span { font-size: .76rem; }
+  .rule-filter { padding: 10px 14px; font-size: .78rem; }
+}
+
+/* ---------- Cabecera en celulares (hasta 560px) ---------- */
+/* Antes: logo + animaciones + tema + hamburguesa no entraban en una
+   sola fila y el botón del menú quedaba cortado o fuera de pantalla. */
+@media (max-width: 560px) {
+  .header-container { gap: 8px; }
+
+  .brand-logo { gap: 8px; min-width: 0; flex-shrink: 1; }
+  .brand-avatar { width: 36px; height: 36px; border-radius: 10px; flex: none; }
+  .brand-avatar i { font-size: 1rem; }
+  .brand-title { font-size: .95rem; }
+  .brand-sub { font-size: .55rem; letter-spacing: .2em; }
+
+  .header-actions { gap: 6px; flex-shrink: 0; }
+
+  /* El nombre del tema se oculta: queda el punto de color y la flecha. */
+  #theme-name { display: none; }
+  .theme-btn { padding: 8px 10px; gap: 8px; }
+  .anim-toggle { gap: 8px; }
+
+  .mobile-toggle { width: 40px; height: 40px; flex: none; }
+}
+
+/* ---------- Celulares chicos (hasta 480px) ---------- */
+@media (max-width: 480px) {
+  .container { width: min(1200px, calc(100% - 28px)); }
+
+  /* "MINECRAFT" en Orbitron no entraba en pantallas de 320–360px. */
+  .hero-main h1.hero-title { font-size: clamp(2rem, 11.5vw, 2.8rem); }
+
+  .hero-actions .btn { width: 100%; }
+  .hero-chips { gap: 8px; }
+  .hero-chip { font-size: .78rem; padding: 7px 12px; }
+
+  .section-title { font-size: clamp(1.7rem, 8vw, 2rem); }
+  .eyebrow { font-size: .72rem; letter-spacing: .18em; }
+
+  .rules-intro { padding: 18px; }
+  .rules-report { padding: 18px; }
+  .rules-report .btn { width: 100%; }
+  .support-discord .btn { width: 100%; }
+}
+
+/* ---------- Celulares muy chicos (hasta 400px) ---------- */
+@media (max-width: 400px) {
+  /* El interruptor de animaciones queda solo con el icono.
+     El estado se ve por el color: encendido = color del tema. */
+  .anim-toggle .anim-switch { display: none; }
+  .anim-toggle { padding: 8px 10px; }
+  .anim-toggle[aria-pressed="true"] > i { color: var(--accent); }
+  .anim-toggle[aria-pressed="false"] > i { opacity: .45; }
+
+  .pol-toc { grid-template-columns: 1fr; }
+
+  /* Verificación de VirusTotal: el botón pasa a ocupar su propia fila. */
+  .mp-verify { flex-wrap: wrap; }
+  .mp-vt-btn { flex: 1 1 100%; text-align: center; padding: 10px 16px; }
+}
+
+@media (max-width: 360px) {
+  .brand-avatar { width: 34px; height: 34px; }
+  .brand-title { font-size: .88rem; }
+  .theme-grid { gap: 4px; }
+}
+
+/* ---------- Pantallas táctiles ---------- */
+/* En el celular, :hover queda "pegado" después de tocar. Se evita que
+   las tarjetas se queden movidas y que el selector de colores se abra
+   solo al tocar (en PC con mouse esto no se aplica). */
+@media (hover: none) {
+  .theme-selector:hover .theme-dropdown:not(.show) {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px);
+  }
+
+  .info-card:hover,
+  .shop-card:hover,
+  .support-card:hover,
+  .rule-card:hover,
+  .soc-card:hover,
+  .social-card:hover,
+  .help-item:hover,
+  .hsc-row:hover,
+  .btn:hover,
+  .mp-btn:hover,
+  .ip-copy-btn:hover,
+  .brand-logo:hover .brand-avatar,
+  .nav-link:hover i {
+    transform: none;
+  }
+}
