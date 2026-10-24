@@ -12,1623 +12,20 @@
   </script>
   <title>Nanovas | Influencer & Minecraft Survival</title>
 
-  <!-- Fuentes tipográficas -->
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800;900&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet"/>
   
-  <!-- FontAwesome 6 -->
   <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin/>
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet"/>
 
-  <style>
-    /* ==========================================================================
-       VARIABLES Y TEMAS DE MODO OSCURO (Default: Rojo Oscuro)
-       ========================================================================== */
-    :root {
-      /* Fondo principal azul oscuro */
-      --bg-dark: #040b1e;
-      --bg-card: rgba(9, 22, 52, 0.9);
-      --bg-card-solid: #091634;
-      --border-color: rgba(255, 255, 255, 0.08);
-
-      --text-main: #f8fafc;
-      --text-muted: #94a3b8;
-      
-      /* Colores por defecto: Rojo Oscuro / Carmesí */
-      --accent: #ff2d55;
-      --accent-dark: #8b001a;
-      --accent-glow: rgba(255, 45, 85, 0.4);
-      --accent-glow-strong: rgba(255, 45, 85, 0.85);
-      --accent-bg: rgba(255, 45, 85, 0.12);
-      --title-gradient: linear-gradient(135deg, #ffffff 10%, #ff6b8b 50%, #ff2d55 80%, #99001c 100%);
-    }
-
-    /* Tema Azul Neón */
-    [data-theme="blue"] {
-      --accent: #00d2ff;
-      --accent-dark: #005691;
-      --accent-glow: rgba(0, 210, 255, 0.4);
-      --accent-glow-strong: rgba(0, 210, 255, 0.85);
-      --accent-bg: rgba(0, 210, 255, 0.12);
-      --title-gradient: linear-gradient(135deg, #ffffff 10%, #80e5ff 50%, #00d2ff 80%, #005691 100%);
-    }
-
-    /* Tema Púrpura Eléctrico */
-    [data-theme="purple"] {
-      --accent: #a855f7;
-      --accent-dark: #581c87;
-      --accent-glow: rgba(168, 85, 247, 0.4);
-      --accent-glow-strong: rgba(168, 85, 247, 0.85);
-      --accent-bg: rgba(168, 85, 247, 0.12);
-      --title-gradient: linear-gradient(135deg, #ffffff 10%, #d8b4fe 50%, #a855f7 80%, #581c87 100%);
-    }
-
-    /* Tema Ámbar Gold */
-    [data-theme="amber"] {
-      --accent: #f59e0b;
-      --accent-dark: #78350f;
-      --accent-glow: rgba(245, 158, 11, 0.4);
-      --accent-glow-strong: rgba(245, 158, 11, 0.85);
-      --accent-bg: rgba(245, 158, 11, 0.12);
-      --title-gradient: linear-gradient(135deg, #ffffff 10%, #fde68a 50%, #f59e0b 80%, #78350f 100%);
-    }
-
-    /* Reset global */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    html {
-      scroll-behavior: smooth;
-      background-color: var(--bg-dark);
-    }
-
-    body {
-      color: var(--text-main);
-      font-family: "Space Grotesk", "Inter", sans-serif;
-      background-color: var(--bg-dark);
-      min-height: 100vh;
-      overflow-x: hidden;
-      position: relative;
-    }
-
-    /* Superposición de luz oscura profesional */
-    body::before {
-      content: "";
-      position: fixed;
-      inset: 0;
-      background:
-        linear-gradient(180deg, rgba(4, 14, 40, 0.84) 0%, rgba(3, 9, 26, 0.95) 100%),
-        radial-gradient(circle at 15% 15%, rgba(20, 60, 140, 0.45) 0%, transparent 50%),
-        radial-gradient(circle at 85% 80%, var(--accent-bg) 0%, transparent 50%),
-        url("https://i.imgur.com/YE4TJmM.jpeg") center / cover no-repeat;
-      transform: translateZ(0);
-      pointer-events: none;
-      z-index: 0;
-    }
-
-
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-
-    button {
-      font-family: inherit;
-      border: none;
-      outline: none;
-      cursor: pointer;
-    }
-
-    .container {
-      width: min(1200px, calc(100% - 40px));
-      margin: 0 auto;
-    }
-
-    /* ==========================================================================
-       HEADER Y BARRA DE NAVEGACIÓN PROFESIONAL
-       ========================================================================== */
-    .header-nav {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 80px;
-      z-index: 1000;
-      background: rgba(4, 12, 32, 0.95);
-      border-bottom: 1px solid var(--border-color);
-      transition: all 0.3s ease;
-    }
-
-    .header-container {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      height: 100%;
-    }
-
-    /* Marca / Logo */
-    .brand-logo {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      font-family: "Orbitron", sans-serif;
-      font-weight: 900;
-      font-size: 1.25rem;
-      letter-spacing: 0.1em;
-      color: #fff;
-    }
-
-    .brand-avatar {
-      width: 42px;
-      height: 42px;
-      border-radius: 12px;
-      background: linear-gradient(135deg, var(--accent), var(--accent-dark));
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 0 15px var(--accent-glow);
-      transition: transform 0.3s ease;
-    }
-
-    .brand-logo:hover .brand-avatar {
-      transform: scale(1.08) rotate(-4deg);
-    }
-
-    .brand-avatar i {
-      font-size: 1.2rem;
-      color: #fff;
-    }
-
-    .brand-name {
-      display: flex;
-      flex-direction: column;
-    }
-
-    .brand-title {
-      line-height: 1;
-      font-size: 1.15rem;
-    }
-
-    .brand-sub {
-      font-size: 0.65rem;
-      letter-spacing: 0.25em;
-      color: var(--accent);
-      font-family: "Space Grotesk", sans-serif;
-      font-weight: 700;
-      margin-top: 3px;
-    }
-
-    /* Enlaces de navegación principales */
-    .nav-menu {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      list-style: none;
-    }
-
-    .nav-link {
-      padding: 10px 16px;
-      border-radius: 12px;
-      font-size: 0.9rem;
-      font-weight: 700;
-      color: var(--text-muted);
-      transition: all 0.25s ease;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      border: 1px solid transparent;
-    }
-
-    .nav-link i {
-      font-size: 0.9rem;
-      opacity: 0.7;
-      transition: transform 0.25s ease;
-    }
-
-    .nav-link:hover {
-      color: #fff;
-      background: rgba(255, 255, 255, 0.05);
-      border-color: rgba(255, 255, 255, 0.1);
-    }
-
-    .nav-link:hover i {
-      transform: translateY(-2px);
-      opacity: 1;
-    }
-
-    .nav-link.active {
-      color: #fff;
-      background: var(--accent-bg);
-      border-color: var(--accent);
-      box-shadow: 0 0 16px var(--accent-glow);
-    }
-
-    .nav-link.active i {
-      color: var(--accent);
-      opacity: 1;
-    }
-
-    /* Controles Header (Selector de Temas & Menú Móvil) */
-    .header-actions {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-
-    /* Dropdown de Temas */
-    .theme-selector {
-      position: relative;
-    }
-
-    .theme-btn {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      padding: 8px 14px;
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      border-radius: 12px;
-      color: #fff;
-      font-size: 0.8rem;
-      font-weight: 700;
-      transition: all 0.25s ease;
-    }
-
-    .theme-btn:hover {
-      background: rgba(255, 255, 255, 0.1);
-      border-color: var(--accent);
-    }
-
-    .theme-dot {
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-      background: var(--accent);
-      box-shadow: 0 0 8px var(--accent);
-    }
-
-    .theme-dropdown {
-      position: absolute;
-      top: calc(100% + 12px);
-      right: 0;
-      background: rgba(13, 19, 36, 0.95);
-      border: 1px solid var(--border-color);
-      border-radius: 16px;
-      padding: 10px;
-      width: 180px;
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-      opacity: 0;
-      visibility: hidden;
-      transform: translateY(10px);
-      transition: all 0.25s ease;
-    }
-
-    .theme-selector:hover .theme-dropdown,
-    .theme-dropdown.show {
-      opacity: 1;
-      visibility: visible;
-      transform: translateY(0);
-    }
-
-    .theme-option {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      padding: 8px 12px;
-      border-radius: 10px;
-      color: var(--text-muted);
-      font-size: 0.82rem;
-      font-weight: 600;
-      transition: all 0.2s ease;
-      background: transparent;
-      width: 100%;
-      text-align: left;
-    }
-
-    .theme-option:hover {
-      background: rgba(255, 255, 255, 0.08);
-      color: #fff;
-    }
-
-    .color-preview {
-      width: 12px;
-      height: 12px;
-      border-radius: 50%;
-    }
-
-    .color-red { background: #ff2d55; box-shadow: 0 0 6px #ff2d55; }
-    .color-blue { background: #00d2ff; box-shadow: 0 0 6px #00d2ff; }
-    .color-purple { background: #a855f7; box-shadow: 0 0 6px #a855f7; }
-    .color-amber { background: #f59e0b; box-shadow: 0 0 6px #f59e0b; }
-
-    /* Botón Hamburguesa Móvil */
-    .mobile-toggle {
-      display: none;
-      width: 42px;
-      height: 42px;
-      border-radius: 12px;
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      color: #fff;
-      font-size: 1.2rem;
-      align-items: center;
-      justify-content: center;
-    }
-
-    /* ==========================================================================
-       SECCIONES Y ESTRUCTURA DE PÁGINA
-       ========================================================================== */
-    main {
-      position: relative;
-      z-index: 1;
-      padding-top: 100px;
-    }
-
-    .page-section {
-      display: none;
-      min-height: calc(100vh - 180px);
-      padding: 40px 0 80px;
-      animation: fadeIn 0.4s ease forwards;
-    }
-
-    .page-section.active {
-      display: block;
-    }
-
-    @keyframes fadeIn {
-      from {
-        opacity: 0;
-        transform: translateY(16px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    /* HEADINGS Y SECCIONES */
-    .section-heading {
-      max-width: 700px;
-      margin: 0 auto 50px;
-      text-align: center;
-    }
-
-    .eyebrow {
-      margin-bottom: 12px;
-      color: var(--accent);
-      font-family: "Orbitron", sans-serif;
-      font-size: 0.8rem;
-      font-weight: 800;
-      letter-spacing: 0.25em;
-      text-transform: uppercase;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .section-title {
-      font-family: "Orbitron", sans-serif;
-      font-size: clamp(2rem, 4vw, 3rem);
-      font-weight: 900;
-      letter-spacing: -0.02em;
-      color: #fff;
-      line-height: 1.15;
-    }
-
-    /* ==========================================================================
-       SECCIÓN: INICIO / HERO
-       ========================================================================== */
-    .hero {
-      text-align: center;
-      padding-top: 30px;
-    }
-
-    .tiktok-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      padding: 8px 18px;
-      margin-bottom: 24px;
-      border: 1px solid var(--accent);
-      border-radius: 99px;
-      background: var(--accent-bg);
-      box-shadow: 0 0 20px var(--accent-glow);
-    }
-
-    .tiktok-badge i {
-      color: var(--accent);
-      font-size: 0.9rem;
-    }
-
-    .tiktok-badge span {
-      font-size: 0.8rem;
-      font-weight: 800;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: #fff;
-    }
-
-    .status-dot {
-      width: 8px;
-      height: 8px;
-      background: #10b981;
-      border-radius: 50%;
-      box-shadow: 0 0 10px #10b981;
-      animation: pulse 2s infinite;
-    }
-
-    @keyframes pulse {
-      50% {
-        opacity: 0.4;
-        transform: scale(0.85);
-      }
-    }
-
-    h1.hero-title {
-      font-family: "Orbitron", sans-serif;
-      font-size: clamp(3.2rem, 8vw, 6.2rem);
-      line-height: 0.95;
-      font-weight: 900;
-      letter-spacing: -0.03em;
-      background: var(--title-gradient);
-      -webkit-background-clip: text;
-      background-clip: text;
-      -webkit-text-fill-color: transparent;
-      margin-bottom: 20px;
-      filter: drop-shadow(0 0 20px var(--accent-glow));
-    }
-
-    .hero-subtitle {
-      font-size: clamp(1.1rem, 2.5vw, 1.35rem);
-      color: var(--text-muted);
-      max-width: 680px;
-      margin: 0 auto 36px;
-      line-height: 1.6;
-    }
-
-    /* Caja de IP Interactiva */
-    .ip-box {
-      max-width: 540px;
-      margin: 0 auto 30px;
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      padding: 12px 14px 12px 24px;
-      background: rgba(13, 19, 36, 0.85);
-      border: 1px solid var(--accent);
-      border-radius: 20px;
-      box-shadow: 0 0 25px var(--accent-glow);
-      transition: all 0.3s ease;
-    }
-
-    .ip-box:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 0 35px var(--accent-glow-strong);
-    }
-
-    .ip-info {
-      flex: 1;
-      text-align: left;
-    }
-
-    .ip-label {
-      display: block;
-      letter-spacing: 0.2em;
-      font-weight: 800;
-      font-family: "Orbitron", sans-serif;
-      font-size: 0.68rem;
-      color: var(--accent);
-      margin-bottom: 2px;
-    }
-
-    .ip-address {
-      font-weight: 800;
-      font-family: "Space Grotesk", monospace;
-      font-size: 1.15rem;
-      color: #fff;
-    }
-
-    .btn {
-      padding: 14px 26px;
-      border-radius: 14px;
-      font-weight: 800;
-      font-family: "Orbitron", sans-serif;
-      letter-spacing: 0.05em;
-      font-size: 0.85rem;
-      transition: all 0.25s ease;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-    }
-
-    .btn-primary {
-      background: var(--accent);
-      color: #fff;
-      box-shadow: 0 0 20px var(--accent-glow);
-    }
-
-    .btn-primary:hover {
-      background: #fff;
-      color: #000;
-      box-shadow: 0 0 28px rgba(255, 255, 255, 0.6);
-      transform: translateY(-2px);
-    }
-
-    .server-tag {
-      display: inline-block;
-      margin-top: 10px;
-      font-size: 1rem;
-      color: var(--text-muted);
-      padding: 6px 16px;
-      background: rgba(255, 255, 255, 0.04);
-      border-radius: 99px;
-      border: 1px solid rgba(255, 255, 255, 0.08);
-    }
-
-    /* CARDS DE GUÍA Y CONTENIDO */
-    .info-layout {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 24px;
-      max-width: 1050px;
-      margin: 50px auto 0;
-    }
-
-    .info-card {
-      position: relative;
-      padding: 32px;
-      background: var(--bg-card);
-      border: 1px solid var(--border-color);
-      border-radius: 24px;
-      transition: all 0.3s ease;
-      text-align: left;
-    }
-
-    .info-card:hover {
-      border-color: var(--accent);
-      transform: translateY(-4px);
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4), 0 0 20px var(--accent-glow);
-    }
-
-    .info-card.full {
-      grid-column: 1 / -1;
-    }
-
-    .step-number {
-      width: 42px;
-      height: 42px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 16px;
-      background: var(--accent-bg);
-      border: 1px solid var(--accent);
-      border-radius: 12px;
-      color: var(--accent);
-      font-family: "Orbitron", sans-serif;
-      font-weight: 900;
-      font-size: 1.1rem;
-    }
-
-    .info-card h3 {
-      font-family: "Orbitron", sans-serif;
-      font-size: 1.3rem;
-      color: #fff;
-      margin-bottom: 12px;
-    }
-
-    .info-card p,
-    .info-card li {
-      color: var(--text-muted);
-      line-height: 1.7;
-      font-size: 0.98rem;
-    }
-
-    .info-card ul {
-      margin-top: 14px;
-      padding-left: 20px;
-      display: grid;
-      gap: 8px;
-    }
-
-    /* ==========================================================================
-       SECCIÓN: MODPACK MINECRAFT
-       ========================================================================== */
-    .shop-layout {
-      display: grid;
-      grid-template-columns: 1.1fr 0.9fr;
-      gap: 24px;
-      max-width: 1050px;
-      margin: 0 auto;
-    }
-
-    .shop-card {
-      padding: 36px;
-      background: var(--bg-card);
-      border: 1px solid var(--border-color);
-      border-radius: 24px;
-      transition: all 0.3s ease;
-    }
-
-    .shop-card:hover {
-      border-color: var(--accent);
-      transform: translateY(-4px);
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4), 0 0 20px var(--accent-glow);
-    }
-
-    .features {
-      display: grid;
-      gap: 12px;
-      margin: 28px 0;
-      list-style: none;
-    }
-
-    .features li {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      color: var(--text-main);
-      font-size: 0.98rem;
-    }
-
-    .features li i {
-      color: var(--accent);
-    }
-
-    .shop-note {
-      margin-top: 24px;
-      padding: 20px;
-      background: rgba(255, 255, 255, 0.03);
-      border-left: 4px solid var(--accent);
-      border-radius: 0 16px 16px 0;
-      color: var(--text-muted);
-      font-size: 0.92rem;
-      line-height: 1.6;
-    }
-
-    /* ==========================================================================
-       SECCIÓN: SOPORTE
-       ========================================================================== */
-    .support-card {
-      max-width: 720px;
-      margin: 0 auto;
-      padding: 48px 36px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 16px;
-      text-align: center;
-      background: var(--bg-card);
-      border: 1px solid var(--border-color);
-      border-radius: 24px;
-      transition: all 0.3s ease;
-    }
-
-    .support-card:hover {
-      border-color: var(--accent);
-      transform: translateY(-4px);
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4), 0 0 20px var(--accent-glow);
-    }
-
-    .discord-icon-wrapper {
-      width: 72px;
-      height: 72px;
-      background: rgba(88, 101, 242, 0.15);
-      border: 1px solid rgba(88, 101, 242, 0.4);
-      border-radius: 20px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 2.2rem;
-      color: #5865f2;
-      box-shadow: 0 0 25px rgba(88, 101, 242, 0.25);
-    }
-
-    .btn-discord {
-      background: #5865f2;
-      color: #fff;
-      box-shadow: 0 0 20px rgba(88, 101, 242, 0.4);
-    }
-
-    .btn-discord:hover {
-      background: #fff;
-      color: #5865f2;
-      box-shadow: 0 0 25px rgba(255, 255, 255, 0.6);
-      transform: translateY(-2px);
-    }
-
-    /* ==========================================================================
-       SECCIÓN: REGLAS DEL SERVIDOR
-       ========================================================================== */
-    .policy-container {
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 40px;
-      background: var(--bg-card);
-      border: 1px solid var(--border-color);
-      border-radius: 24px;
-    }
-
-    .policy-item + .policy-item {
-      margin-top: 28px;
-      padding-top: 28px;
-      border-top: 1px solid var(--border-color);
-    }
-
-    .policy-item h3 {
-      font-family: "Orbitron", sans-serif;
-      color: #fff;
-      font-size: 1.15rem;
-      margin-bottom: 10px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .policy-item h3 i {
-      color: var(--accent);
-      font-size: 0.95rem;
-    }
-
-    .policy-item p {
-      color: var(--text-muted);
-      line-height: 1.75;
-      font-size: 0.96rem;
-    }
-
-    /* ==========================================================================
-       SECCIÓN: REDES SOCIALES (INFLUENCER TIKTOK)
-       ========================================================================== */
-    .social-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 20px;
-      max-width: 1050px;
-      margin: 0 auto;
-    }
-
-    .social-card {
-      position: relative;
-      display: flex;
-      align-items: center;
-      gap: 18px;
-      padding: 24px;
-      background: var(--bg-card);
-      border: 1px solid var(--border-color);
-      border-radius: 20px;
-      overflow: hidden;
-      transition: all 0.3s ease;
-    }
-
-    .social-card::before {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 3px;
-      background: var(--social-color, var(--accent));
-      opacity: 0.8;
-    }
-
-    .social-icon {
-      width: 56px;
-      height: 56px;
-      border-radius: 16px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: color-mix(in srgb, var(--social-color, var(--accent)) 15%, transparent);
-      border: 1px solid color-mix(in srgb, var(--social-color, var(--accent)) 40%, transparent);
-      color: var(--social-color, #fff);
-      font-size: 1.6rem;
-      flex-shrink: 0;
-    }
-
-    .social-info {
-      flex: 1;
-      min-width: 0;
-    }
-
-    .social-info h3 {
-      font-family: "Orbitron", sans-serif;
-      font-size: 1.1rem;
-      color: #fff;
-      margin-bottom: 4px;
-    }
-
-    .social-info p {
-      color: var(--text-muted);
-      font-size: 0.88rem;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-
-    .social-arrow {
-      color: rgba(255, 255, 255, 0.3);
-      font-size: 0.85rem;
-      transition: all 0.25s ease;
-    }
-
-    .social-card:hover {
-      transform: translateY(-4px);
-      border-color: var(--social-color, var(--accent));
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4), 0 0 20px color-mix(in srgb, var(--social-color, var(--accent)) 30%, transparent);
-    }
-
-    .social-card:hover .social-arrow {
-      color: #fff;
-      transform: translate(3px, -3px);
-    }
-
-    .social-card.featured {
-      grid-column: span 2;
-    }
-
-    /* Colores oficiales de redes */
-    .social-discord { --social-color: #5865f2; }
-    .social-tiktok { --social-color: #ff0050; }
-    .social-twitch { --social-color: #a970ff; }
-    .social-instagram { --social-color: #e1306c; }
-    .social-kick { --social-color: #53fc18; }
-
-    .kick-text {
-      font-family: "Space Grotesk", sans-serif;
-      font-weight: 900;
-      font-style: italic;
-      font-size: 1.4rem;
-    }
-
-    /* ==========================================================================
-       FOOTER
-       ========================================================================== */
-    footer {
-      padding: 36px 0;
-      margin-top: 60px;
-      border-top: 1px solid var(--border-color);
-      text-align: center;
-      color: var(--text-muted);
-      font-size: 0.9rem;
-      position: relative;
-      z-index: 1;
-    }
-
-    footer strong {
-      color: var(--accent);
-    }
-
-    /* ==========================================================================
-       RESPONSIVO (MÓVILES Y TABLETS)
-       ========================================================================== */
-    @media (max-width: 900px) {
-      .mobile-toggle {
-        display: flex;
-      }
-
-      .nav-menu {
-        position: fixed;
-        top: 80px;
-        left: 0;
-        right: 0;
-        background: rgba(7, 10, 20, 0.96);
-        flex-direction: column;
-        padding: 20px;
-        gap: 10px;
-        border-bottom: 1px solid var(--border-color);
-        box-shadow: 0 20px 40px rgba(0,0,0,0.6);
-        display: none;
-      }
-
-      .nav-menu.active {
-        display: flex;
-      }
-
-      .nav-link {
-        width: 100%;
-        padding: 12px 18px;
-        font-size: 1rem;
-      }
-
-      .info-layout,
-      .shop-layout {
-        grid-template-columns: 1fr;
-      }
-
-      .social-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .social-card.featured {
-        grid-column: span 1;
-      }
-    }
-
-    @media (max-width: 600px) {
-      .ip-box {
-        flex-direction: column;
-        text-align: center;
-        padding: 20px;
-      }
-
-      .ip-info {
-        text-align: center;
-      }
-
-      .ip-box .btn {
-        width: 100%;
-      }
-
-      .policy-container {
-        padding: 24px;
-      }
-    }
-  
-    /* ==========================================================================
-       INICIO REDISEÑADO: HERO PROFESIONAL + ESTADO DEL SERVIDOR EN VIVO
-       ========================================================================== */
-    #inicio .hero { text-align: left; padding-top: 20px; }
-
-    .hero-grid {
-      display: grid;
-      grid-template-columns: 1.15fr 0.85fr;
-      gap: 48px;
-      align-items: center;
-      min-height: calc(100vh - 220px);
-    }
-
-    .hero-main .tiktok-badge { margin-bottom: 22px; }
-
-    .hero-main h1.hero-title {
-      font-size: clamp(2.8rem, 6.2vw, 5.2rem);
-      margin-bottom: 22px;
-    }
-    .hero-main h1.hero-title span { display: block; }
-
-    .hero-main .hero-subtitle {
-      margin: 0 0 30px;
-      max-width: 560px;
-      font-size: clamp(1rem, 1.8vw, 1.15rem);
-    }
-
-    .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 28px; }
-
-    .btn-ghost {
-      background: rgba(255,255,255,0.05);
-      border: 1px solid rgba(255,255,255,0.14);
-      color: #fff;
-    }
-    .btn-ghost:hover { border-color: var(--accent); background: var(--accent-bg); transform: translateY(-2px); }
-
-    .hero-chips { display: flex; flex-wrap: wrap; gap: 10px; }
-    .hero-chip {
-      display: inline-flex; align-items: center; gap: 8px;
-      padding: 8px 14px; font-size: 0.82rem; font-weight: 600;
-      color: var(--text-muted);
-      background: rgba(255,255,255,0.04);
-      border: 1px solid rgba(255,255,255,0.08);
-      border-radius: 99px;
-    }
-    .hero-chip i { color: var(--accent); }
-
-    /* Tarjeta de estado del servidor */
-    .server-card {
-      position: relative;
-      padding: 28px;
-      background: linear-gradient(160deg, rgba(14, 34, 78, 0.85), rgba(6, 16, 40, 0.9));
-      border: 1px solid rgba(120, 170, 255, 0.18);
-      border-radius: 28px;
-      box-shadow: 0 25px 60px rgba(0,0,0,0.55), 0 0 40px var(--accent-glow);
-      overflow: hidden;
-    }
-    .server-card::before {
-      content: ""; position: absolute; inset: 0 0 auto 0; height: 3px;
-      background: linear-gradient(90deg, transparent, var(--accent), transparent);
-    }
-
-    .sc-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 22px; }
-    .sc-title { display: flex; align-items: center; gap: 12px; }
-    .sc-icon {
-      width: 46px; height: 46px; border-radius: 14px;
-      display: flex; align-items: center; justify-content: center;
-      background: var(--accent-bg); border: 1px solid var(--accent);
-      color: var(--accent); font-size: 1.2rem;
-    }
-    .sc-title h3 { font-family: "Orbitron", sans-serif; font-size: 1rem; color: #fff; line-height: 1.2; }
-    .sc-title small { color: var(--text-muted); font-size: 0.75rem; }
-
-    .status-pill {
-      display: inline-flex; align-items: center; gap: 8px;
-      padding: 7px 14px; border-radius: 99px;
-      font-size: 0.72rem; font-weight: 800; letter-spacing: 0.12em;
-      font-family: "Orbitron", sans-serif;
-      border: 1px solid transparent;
-    }
-    .status-pill .dot { width: 8px; height: 8px; border-radius: 50%; background: currentColor; box-shadow: 0 0 10px currentColor; }
-    .status-pill.checking { color: #fbbf24; background: rgba(251,191,36,.12); border-color: rgba(251,191,36,.35); }
-    .status-pill.checking .dot { animation: pulse 1s infinite; }
-    .status-pill.online  { color: #10b981; background: rgba(16,185,129,.12); border-color: rgba(16,185,129,.4); }
-    .status-pill.online .dot { animation: pulse 2s infinite; }
-    .status-pill.offline { color: #f43f5e; background: rgba(244,63,94,.12); border-color: rgba(244,63,94,.4); }
-
-    .sc-players { text-align: center; padding: 22px 0 18px; border-top: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color); }
-    .sc-count { font-family: "Orbitron", sans-serif; font-weight: 900; font-size: clamp(2.6rem, 5vw, 3.6rem); line-height: 1; color: #fff; }
-    .sc-count .sep { color: var(--text-muted); font-size: 0.55em; margin: 0 4px; }
-    .sc-count .max { color: var(--text-muted); font-size: 0.55em; }
-    .sc-label { margin-top: 8px; font-size: 0.78rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-muted); font-weight: 700; }
-
-    .sc-bar { height: 8px; margin-top: 16px; border-radius: 99px; background: rgba(255,255,255,0.08); overflow: hidden; }
-    .sc-bar-fill { height: 100%; width: 0; border-radius: 99px; background: linear-gradient(90deg, var(--accent-dark), var(--accent)); box-shadow: 0 0 12px var(--accent-glow); transition: width .8s ease; }
-
-    .sc-meta { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 20px 0; }
-    .sc-meta-item { padding: 12px 14px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.06); border-radius: 14px; }
-    .sc-meta-item span { display: block; font-size: 0.68rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 4px; }
-    .sc-meta-item strong { font-size: 0.92rem; color: #fff; word-break: break-word; }
-
-    .sc-ip { display: flex; align-items: center; gap: 12px; padding: 10px 10px 10px 18px; background: rgba(2, 8, 24, 0.7); border: 1px solid var(--accent); border-radius: 16px; }
-    .sc-ip .ip-info { flex: 1; min-width: 0; }
-    .sc-ip .ip-address { font-size: 1.05rem; overflow: hidden; text-overflow: ellipsis; }
-    .sc-ip .btn { padding: 12px 18px; font-size: 0.75rem; }
-
-    .sc-foot { display: flex; align-items: center; justify-content: space-between; margin-top: 14px; font-size: 0.74rem; color: var(--text-muted); }
-    .sc-refresh { background: none; color: var(--text-muted); font-size: 0.74rem; display: inline-flex; align-items: center; gap: 6px; padding: 4px 8px; border-radius: 8px; }
-    .sc-refresh:hover { color: #fff; background: rgba(255,255,255,0.06); }
-    .sc-refresh.spin i { animation: spin .8s linear infinite; }
-    @keyframes spin { to { transform: rotate(360deg); } }
-
-    /* Guía rediseñada */
-    .guide-block { margin-top: 70px; }
-    .guide-block .section-heading { text-align: center; }
-    .guide-block .info-layout { grid-template-columns: repeat(3, 1fr); max-width: 1100px; }
-    .guide-block .info-card.full { grid-column: auto; }
-    .guide-block .info-card { padding: 28px; }
-    .guide-block .info-card::after {
-      content: ""; position: absolute; left: 28px; right: 28px; bottom: 0; height: 2px;
-      background: linear-gradient(90deg, var(--accent), transparent); opacity: .5;
-    }
-
-    @media (max-width: 960px) {
-      .hero-grid { grid-template-columns: 1fr; gap: 32px; min-height: 0; }
-      #inicio .hero { text-align: center; }
-      .hero-main .hero-subtitle { margin-left: auto; margin-right: auto; }
-      .hero-actions, .hero-chips { justify-content: center; }
-      .guide-block .info-layout { grid-template-columns: 1fr; }
-    }
-    @media (max-width: 480px) {
-      .server-card { padding: 20px; border-radius: 22px; }
-      .sc-ip { flex-direction: column; align-items: stretch; padding: 14px; }
-      .sc-ip .btn { width: 100%; }
-    }
-
-  
-    /* ==========================================================================
-       TIENDA / PACK DE MODS REDISEÑADO
-       ========================================================================== */
-    #tienda .pack-hero { text-align: left; }
-    #tienda .hero-grid { min-height: 0; margin-top: 10px; align-items: stretch; }
-
-    .pack-main {
-      padding: 32px;
-      background: var(--bg-card);
-      border: 1px solid var(--border-color);
-      border-radius: 28px;
-      display: flex; flex-direction: column;
-    }
-    .pack-main h3 { font-family: "Orbitron", sans-serif; font-size: clamp(1.4rem, 3vw, 1.9rem); color: #fff; margin: 14px 0 8px; }
-    .pack-main > p { color: var(--text-muted); line-height: 1.6; }
-
-    .pack-tags { display: flex; flex-wrap: wrap; gap: 8px; }
-    .pack-tag {
-      padding: 6px 12px; font-size: 0.72rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase;
-      color: var(--accent); background: var(--accent-bg); border: 1px solid var(--accent); border-radius: 99px;
-    }
-
-    .pack-features { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 24px 0; }
-    .pack-feature {
-      display: flex; gap: 12px; align-items: flex-start; padding: 14px;
-      background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.07); border-radius: 16px;
-      transition: all .25s ease;
-    }
-    .pack-feature:hover { border-color: var(--accent); transform: translateY(-2px); }
-    .pack-feature i {
-      width: 36px; height: 36px; flex: none; display: flex; align-items: center; justify-content: center;
-      border-radius: 10px; background: var(--accent-bg); color: var(--accent); font-size: .95rem;
-    }
-    .pack-feature strong { display: block; color: #fff; font-size: .9rem; margin-bottom: 2px; }
-    .pack-feature span { color: var(--text-muted); font-size: .8rem; line-height: 1.4; }
-
-    .pack-cta { margin-top: auto; display: flex; flex-wrap: wrap; gap: 12px; }
-    .pack-cta .btn-primary { flex: 1; min-width: 220px; }
-
-    /* Tarjeta de verificación de seguridad */
-    .security-card { display: flex; flex-direction: column; }
-    .security-shield {
-      width: 84px; height: 84px; margin: 4px auto 14px; border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 2.2rem; color: #10b981;
-      background: radial-gradient(circle, rgba(16,185,129,.22), rgba(16,185,129,.04));
-      border: 2px solid rgba(16,185,129,.55);
-      box-shadow: 0 0 30px rgba(16,185,129,.35);
-    }
-    .security-card h3 { font-family: "Orbitron", sans-serif; text-align: center; color: #fff; font-size: 1.05rem; }
-    .security-card .status-pill { align-self: center; margin: 12px 0 18px; }
-
-    .security-list { list-style: none; display: grid; gap: 10px; margin-bottom: 20px; }
-    .security-list li {
-      display: flex; align-items: center; gap: 10px; padding: 11px 14px;
-      font-size: .86rem; color: #e2e8f0;
-      background: rgba(16,185,129,.07); border: 1px solid rgba(16,185,129,.2); border-radius: 12px;
-    }
-    .security-list li i { color: #10b981; }
-
-    .vt-box {
-      padding: 14px; margin-top: auto;
-      background: rgba(2, 8, 24, 0.7); border: 1px solid var(--accent); border-radius: 16px;
-    }
-    .vt-box p { font-size: .8rem; color: var(--text-muted); line-height: 1.5; margin-bottom: 12px; }
-    .vt-box .btn { width: 100%; padding: 12px 16px; font-size: .78rem; }
-
-    /* Pasos de instalación */
-    .pack-steps { margin-top: 56px; }
-    .pack-steps .info-layout { grid-template-columns: repeat(3, 1fr); max-width: 1100px; margin-top: 30px; }
-    .pack-steps .info-card.full { grid-column: auto; }
-
-    .pack-note {
-      display: flex; gap: 14px; align-items: flex-start; max-width: 1100px; margin: 24px auto 0;
-      padding: 18px 22px; color: var(--text-muted); line-height: 1.6; font-size: .92rem;
-      background: var(--accent-bg); border: 1px solid var(--accent); border-radius: 18px;
-    }
-    .pack-note i { color: var(--accent); margin-top: 3px; }
-
-    @media (max-width: 960px) {
-      #tienda .section-heading { text-align: center; }
-      .pack-steps .info-layout { grid-template-columns: 1fr; }
-    }
-    @media (max-width: 560px) {
-      .pack-features { grid-template-columns: 1fr; }
-      .pack-main { padding: 22px; }
-    }
-
-  
-    /* ==========================================================================
-       SOPORTE REDISEÑADO + DISCORD EN TIEMPO REAL
-       ========================================================================== */
-    #soporte .hero-grid { min-height: 0; margin-top: 10px; align-items: stretch; }
-
-    .discord-card {
-      position: relative; padding: 32px;
-      background: linear-gradient(160deg, rgba(36, 48, 140, 0.55), rgba(6, 16, 40, 0.92));
-      border: 1px solid rgba(88, 101, 242, 0.45);
-      border-radius: 28px;
-      box-shadow: 0 25px 60px rgba(0,0,0,0.5), 0 0 40px rgba(88,101,242,0.25);
-      display: flex; flex-direction: column; overflow: hidden;
-    }
-    .discord-card::before {
-      content: ""; position: absolute; inset: 0 0 auto 0; height: 3px;
-      background: linear-gradient(90deg, transparent, #5865f2, transparent);
-    }
-    .dc-head { display: flex; align-items: center; gap: 16px; margin-bottom: 20px; }
-    .dc-logo {
-      width: 64px; height: 64px; flex: none; border-radius: 18px; overflow: hidden;
-      display: flex; align-items: center; justify-content: center;
-      background: #5865f2; color: #fff; font-size: 1.9rem;
-      box-shadow: 0 0 22px rgba(88,101,242,.6);
-    }
-    .dc-logo img { width: 100%; height: 100%; object-fit: cover; }
-    .dc-head h3 { font-family: "Orbitron", sans-serif; color: #fff; font-size: 1.3rem; line-height: 1.2; }
-    .dc-head small { color: var(--text-muted); font-size: .8rem; }
-
-    .dc-desc { color: var(--text-muted); line-height: 1.6; margin-bottom: 22px; }
-
-    .dc-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 22px; }
-    .dc-stat {
-      padding: 18px 16px; text-align: center;
-      background: rgba(2, 8, 24, 0.6); border: 1px solid rgba(255,255,255,0.08); border-radius: 18px;
-    }
-    .dc-stat strong { display: block; font-family: "Orbitron", sans-serif; font-size: clamp(1.6rem, 4vw, 2.2rem); color: #fff; line-height: 1; }
-    .dc-stat span { display: inline-flex; align-items: center; gap: 7px; margin-top: 10px; font-size: .7rem; letter-spacing: .15em; text-transform: uppercase; color: var(--text-muted); font-weight: 700; }
-    .dc-stat .dot-online { width: 8px; height: 8px; border-radius: 50%; background: #10b981; box-shadow: 0 0 10px #10b981; animation: pulse 2s infinite; }
-    .dc-stat .dot-members { width: 8px; height: 8px; border-radius: 50%; background: #5865f2; box-shadow: 0 0 10px #5865f2; }
-
-    .btn-discord.btn-wide { width: 100%; padding: 16px; margin-top: auto; }
-
-    .dc-foot { display: flex; align-items: center; justify-content: space-between; margin-top: 14px; font-size: .74rem; color: var(--text-muted); }
-
-    /* Canales de ayuda */
-    .support-side { display: flex; flex-direction: column; gap: 14px; }
-    .help-item {
-      display: flex; align-items: flex-start; gap: 16px; padding: 20px;
-      background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 20px; transition: all .3s ease;
-    }
-    .help-item:hover { border-color: var(--accent); transform: translateX(4px); box-shadow: 0 0 20px var(--accent-glow); }
-    .help-item .help-icon {
-      width: 46px; height: 46px; flex: none; display: flex; align-items: center; justify-content: center;
-      border-radius: 14px; background: var(--accent-bg); border: 1px solid var(--accent);
-      color: var(--accent); font-size: 1.1rem;
-    }
-    .help-item h4 { font-family: "Orbitron", sans-serif; font-size: .95rem; color: #fff; margin-bottom: 6px; }
-    .help-item p { color: var(--text-muted); font-size: .87rem; line-height: 1.55; }
-
-    /* Preguntas frecuentes */
-    .faq-block { margin-top: 56px; max-width: 900px; margin-left: auto; margin-right: auto; }
-    .faq-list { display: grid; gap: 12px; margin-top: 28px; }
-    .faq-item {
-      background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 18px; overflow: hidden; transition: border-color .25s ease;
-    }
-    .faq-item[open] { border-color: var(--accent); }
-    .faq-item summary {
-      list-style: none; cursor: pointer; padding: 18px 22px;
-      display: flex; align-items: center; justify-content: space-between; gap: 16px;
-      font-weight: 700; color: #fff; font-size: .98rem;
-    }
-    .faq-item summary::-webkit-details-marker { display: none; }
-    .faq-item summary i { color: var(--accent); transition: transform .25s ease; }
-    .faq-item[open] summary i { transform: rotate(45deg); }
-    .faq-item p { padding: 0 22px 20px; color: var(--text-muted); line-height: 1.65; font-size: .92rem; }
-
-    @media (max-width: 960px) {
-      #soporte .section-heading { text-align: center; }
-    }
-    @media (max-width: 480px) {
-      .discord-card { padding: 22px; border-radius: 22px; }
-    }
-
-  
-    /* ==========================================================================
-       REGLAS REDISEÑADAS
-       ========================================================================== */
-    .rules-intro {
-      display: flex; align-items: center; gap: 18px; max-width: 1100px; margin: 36px auto 0;
-      padding: 20px 26px;
-      background: linear-gradient(135deg, rgba(14, 34, 78, 0.8), rgba(6, 16, 40, 0.85));
-      border: 1px solid rgba(120, 170, 255, 0.18); border-radius: 22px;
-    }
-    .rules-intro .ri-icon {
-      width: 54px; height: 54px; flex: none; display: flex; align-items: center; justify-content: center;
-      border-radius: 16px; background: var(--accent-bg); border: 1px solid var(--accent);
-      color: var(--accent); font-size: 1.4rem;
-    }
-    .rules-intro strong { display: block; font-family: "Orbitron", sans-serif; color: #fff; font-size: 1rem; margin-bottom: 4px; }
-    .rules-intro p { color: var(--text-muted); font-size: .9rem; line-height: 1.55; }
-
-    .rules-filters { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin: 30px 0 28px; }
-    .rule-filter {
-      padding: 10px 18px; border-radius: 99px; font-size: .82rem; font-weight: 700;
-      background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.12); color: var(--text-muted);
-      transition: all .25s ease; display: inline-flex; align-items: center; gap: 8px;
-    }
-    .rule-filter:hover { color: #fff; border-color: var(--accent); }
-    .rule-filter.active { color: #fff; background: var(--accent-bg); border-color: var(--accent); box-shadow: 0 0 16px var(--accent-glow); }
-
-    .rules-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; max-width: 1100px; margin: 0 auto; }
-
-    .rule-card {
-      position: relative; padding: 26px;
-      background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 22px; transition: all .3s ease; overflow: hidden;
-    }
-    .rule-card::before {
-      content: ""; position: absolute; left: 0; top: 22px; bottom: 22px; width: 3px;
-      background: var(--accent); border-radius: 0 4px 4px 0; opacity: .7;
-    }
-    .rule-card:hover { border-color: var(--accent); transform: translateY(-4px); box-shadow: 0 10px 30px rgba(0,0,0,.4), 0 0 20px var(--accent-glow); }
-    .rule-card.hidden { display: none; }
-
-    .rule-top { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; }
-    .rule-num { font-family: "Orbitron", sans-serif; font-weight: 900; font-size: 1.6rem; color: rgba(255,255,255,0.14); line-height: 1; }
-    .rule-icon {
-      width: 40px; height: 40px; display: flex; align-items: center; justify-content: center;
-      border-radius: 12px; background: var(--accent-bg); color: var(--accent); font-size: 1rem;
-    }
-    .rule-tag {
-      margin-left: auto; padding: 5px 11px; border-radius: 99px;
-      font-size: .66rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase;
-      color: #f43f5e; background: rgba(244,63,94,.12); border: 1px solid rgba(244,63,94,.4);
-    }
-    .rule-tag.ok { color: #10b981; background: rgba(16,185,129,.12); border-color: rgba(16,185,129,.4); }
-
-    .rule-card h3 { font-family: "Orbitron", sans-serif; font-size: 1.02rem; color: #fff; margin-bottom: 10px; }
-    .rule-card p { color: var(--text-muted); line-height: 1.65; font-size: .92rem; }
-    .rule-card p strong { color: #f43f5e; }
-
-    .rules-report {
-      display: flex; align-items: center; justify-content: space-between; gap: 18px; flex-wrap: wrap;
-      max-width: 1100px; margin: 28px auto 0; padding: 20px 26px;
-      background: var(--accent-bg); border: 1px solid var(--accent); border-radius: 20px;
-    }
-    .rules-report p { color: var(--text-muted); font-size: .92rem; line-height: 1.55; max-width: 640px; }
-    .rules-report p strong { color: #fff; }
-
-    @media (max-width: 860px) {
-      .rules-grid { grid-template-columns: 1fr; }
-      .rules-intro { flex-direction: column; text-align: center; }
-      .rules-report { justify-content: center; text-align: center; }
-    }
-
-  
-    /* ==========================================================================
-       REDES SOCIALES REDISEÑADAS
-       ========================================================================== */
-    .soc-profile {
-      display: flex; align-items: center; gap: 20px; max-width: 1100px; margin: 36px auto 0; padding: 26px 30px;
-      background: linear-gradient(135deg, rgba(14, 34, 78, 0.85), rgba(6, 16, 40, 0.9));
-      border: 1px solid rgba(120, 170, 255, 0.18); border-radius: 26px;
-      box-shadow: 0 20px 50px rgba(0,0,0,.45), 0 0 30px var(--accent-glow);
-    }
-    .soc-avatar {
-      width: 72px; height: 72px; flex: none; display: flex; align-items: center; justify-content: center;
-      border-radius: 20px; font-size: 1.8rem; color: #fff;
-      background: linear-gradient(135deg, var(--accent), var(--accent-dark)); box-shadow: 0 0 22px var(--accent-glow);
-    }
-    .soc-profile h3 { font-family: "Orbitron", sans-serif; color: #fff; font-size: 1.3rem; }
-    .soc-profile p { color: var(--text-muted); margin-top: 6px; line-height: 1.5; font-size: .92rem; }
-
-    .soc-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; max-width: 1100px; margin: 24px auto 0; }
-
-    .soc-card {
-      position: relative; display: flex; flex-direction: column; gap: 18px; padding: 26px;
-      background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 24px; overflow: hidden; transition: all .3s ease;
-    }
-    .soc-card::before {
-      content: ""; position: absolute; inset: 0 0 auto 0; height: 3px;
-      background: linear-gradient(90deg, transparent, var(--social-color), transparent); opacity: .8;
-    }
-    .soc-card::after {
-      content: ""; position: absolute; width: 180px; height: 180px; right: -60px; bottom: -80px; border-radius: 50%;
-      background: radial-gradient(circle, color-mix(in srgb, var(--social-color) 28%, transparent), transparent 70%);
-      pointer-events: none;
-    }
-    .soc-card:hover {
-      transform: translateY(-6px); border-color: var(--social-color);
-      box-shadow: 0 14px 34px rgba(0,0,0,.45), 0 0 26px color-mix(in srgb, var(--social-color) 35%, transparent);
-    }
-    .soc-card.wide { grid-column: span 3; flex-direction: row; align-items: center; gap: 24px; }
-    .soc-card.wide .soc-body { flex: 1; }
-
-    .soc-top { display: flex; align-items: center; justify-content: space-between; }
-    .soc-card .social-icon { margin: 0; }
-    .soc-kind {
-      padding: 5px 12px; border-radius: 99px; font-size: .68rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase;
-      color: var(--social-color); background: color-mix(in srgb, var(--social-color) 14%, transparent);
-      border: 1px solid color-mix(in srgb, var(--social-color) 40%, transparent);
-    }
-    .soc-body h3 { font-family: "Orbitron", sans-serif; color: #fff; font-size: 1.1rem; margin-bottom: 6px; }
-    .soc-body p { color: var(--text-muted); font-size: .92rem; word-break: break-word; }
-    .soc-live { margin-top: 10px; display: inline-flex; align-items: center; gap: 8px; font-size: .82rem; color: #e2e8f0; font-weight: 700; }
-    .soc-live i { width: 8px; height: 8px; border-radius: 50%; background: #10b981; box-shadow: 0 0 10px #10b981; animation: pulse 2s infinite; }
-
-    .soc-cta {
-      margin-top: auto; align-self: flex-start; display: inline-flex; align-items: center; gap: 10px;
-      padding: 11px 20px; border-radius: 12px; font-size: .8rem; font-weight: 800; color: #fff; z-index: 1;
-      font-family: "Orbitron", sans-serif; letter-spacing: .04em;
-      background: color-mix(in srgb, var(--social-color) 22%, transparent);
-      border: 1px solid color-mix(in srgb, var(--social-color) 55%, transparent);
-      transition: all .25s ease;
-    }
-    .soc-card:hover .soc-cta { background: var(--social-color); color: #000; }
-    .soc-card.wide .soc-cta { margin-top: 0; }
-    .soc-discord .soc-cta, .soc-tiktok .soc-cta, .soc-instagram .soc-cta, .soc-twitch .soc-cta { }
-    .soc-card:hover.social-discord .soc-cta, .soc-card:hover.social-twitch .soc-cta, .soc-card:hover.social-instagram .soc-cta, .soc-card:hover.social-tiktok .soc-cta { color: #fff; }
-
-    /* ==========================================================================
-       POLÍTICA Y PRIVACIDAD REDISEÑADA
-       ========================================================================== */
-    .pol-layout { display: grid; grid-template-columns: 320px 1fr; gap: 28px; max-width: 1100px; margin: 36px auto 0; align-items: start; }
-
-    .pol-side {
-      position: sticky; top: 104px; padding: 26px;
-      background: linear-gradient(160deg, rgba(14, 34, 78, 0.85), rgba(6, 16, 40, 0.9));
-      border: 1px solid rgba(120, 170, 255, 0.18); border-radius: 26px;
-    }
-    .pol-side h3 { font-family: "Orbitron", sans-serif; color: #fff; font-size: .95rem; margin-bottom: 14px; }
-    .pol-badges { display: grid; gap: 8px; margin-bottom: 22px; }
-    .pol-badge {
-      display: flex; align-items: center; gap: 10px; padding: 10px 14px; font-size: .84rem; color: #e2e8f0;
-      background: rgba(16,185,129,.08); border: 1px solid rgba(16,185,129,.25); border-radius: 12px;
-    }
-    .pol-badge i { color: #10b981; }
-    .pol-toc { list-style: none; display: grid; gap: 4px; }
-    .pol-toc a {
-      display: flex; align-items: center; gap: 10px; padding: 9px 12px; border-radius: 10px;
-      color: var(--text-muted); font-size: .86rem; font-weight: 600; border: 1px solid transparent; transition: all .2s ease;
-    }
-    .pol-toc a b { font-family: "Orbitron", sans-serif; color: var(--accent); font-size: .78rem; }
-    .pol-toc a:hover, .pol-toc a.active { color: #fff; background: var(--accent-bg); border-color: var(--accent); }
-
-    .pol-list { display: grid; gap: 16px; }
-    .pol-card {
-      position: relative; padding: 26px 28px 26px 30px; scroll-margin-top: 104px;
-      background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 22px; transition: all .3s ease;
-    }
-    .pol-card::before { content: ""; position: absolute; left: 0; top: 24px; bottom: 24px; width: 3px; background: var(--accent); border-radius: 0 4px 4px 0; opacity: .7; }
-    .pol-card:hover { border-color: var(--accent); box-shadow: 0 0 20px var(--accent-glow); }
-    .pol-card-head { display: flex; align-items: center; gap: 14px; margin-bottom: 12px; }
-    .pol-card-icon {
-      width: 44px; height: 44px; flex: none; display: flex; align-items: center; justify-content: center;
-      border-radius: 13px; background: var(--accent-bg); border: 1px solid var(--accent); color: var(--accent);
-    }
-    .pol-card h3 { font-family: "Orbitron", sans-serif; color: #fff; font-size: 1.02rem; }
-    .pol-card p { color: var(--text-muted); line-height: 1.7; font-size: .94rem; }
-    .pol-card p a { color: var(--accent); font-weight: 700; text-decoration: underline; text-underline-offset: 3px; }
-    .pol-card p a:hover { color: #fff; }
-
-    @media (max-width: 960px) {
-      .soc-grid { grid-template-columns: repeat(2, 1fr); }
-      .soc-card.wide { grid-column: span 2; }
-      .pol-layout { grid-template-columns: 1fr; }
-      .pol-side { position: static; }
-    }
-    @media (max-width: 600px) {
-      .soc-grid { grid-template-columns: 1fr; }
-      .soc-card.wide { grid-column: span 1; flex-direction: column; align-items: flex-start; }
-      .soc-profile { flex-direction: column; text-align: center; padding: 22px; }
-      .pol-card { padding: 22px; }
-    }
-
-  
-    .soc-avatar { width: 96px; height: 96px; padding: 3px; overflow: hidden; border-radius: 50%; }
-    .soc-avatar img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; display: block; background: #f1efea; }
-    @media (max-width: 600px) { .soc-avatar { width: 88px; height: 88px; } }
-  
-    /* ===== TEMAS ADICIONALES ===== */
-    [data-theme="rose"] {
-      --accent: #e11d48;
-      --accent-dark: #560b1b;
-      --accent-glow: rgba(225, 29, 72, 0.4);
-      --accent-glow-strong: rgba(225, 29, 72, 0.85);
-      --accent-bg: rgba(225, 29, 72, 0.12);
-      --title-gradient: linear-gradient(135deg, #ffffff 10%, #f299ad 50%, #e11d48 80%, #560b1b 100%);
-    }
-    [data-theme="coral"] {
-      --accent: #ff6b4a;
-      --accent-dark: #61291c;
-      --accent-glow: rgba(255, 107, 74, 0.4);
-      --accent-glow-strong: rgba(255, 107, 74, 0.85);
-      --accent-bg: rgba(255, 107, 74, 0.12);
-      --title-gradient: linear-gradient(135deg, #ffffff 10%, #ffbcae 50%, #ff6b4a 80%, #61291c 100%);
-    }
-    [data-theme="orange"] {
-      --accent: #fb923c;
-      --accent-dark: #5f3717;
-      --accent-glow: rgba(251, 146, 60, 0.4);
-      --accent-glow-strong: rgba(251, 146, 60, 0.85);
-      --accent-bg: rgba(251, 146, 60, 0.12);
-      --title-gradient: linear-gradient(135deg, #ffffff 10%, #fdcea7 50%, #fb923c 80%, #5f3717 100%);
-    }
-    [data-theme="gold"] {
-      --accent: #facc15;
-      --accent-dark: #5f4e08;
-      --accent-glow: rgba(250, 204, 21, 0.4);
-      --accent-glow-strong: rgba(250, 204, 21, 0.85);
-      --accent-bg: rgba(250, 204, 21, 0.12);
-      --title-gradient: linear-gradient(135deg, #ffffff 10%, #fde896 50%, #facc15 80%, #5f4e08 100%);
-    }
-    [data-theme="pink"] {
-      --accent: #ff4fa3;
-      --accent-dark: #611e3e;
-      --accent-glow: rgba(255, 79, 163, 0.4);
-      --accent-glow-strong: rgba(255, 79, 163, 0.85);
-      --accent-bg: rgba(255, 79, 163, 0.12);
-      --title-gradient: linear-gradient(135deg, #ffffff 10%, #ffb0d6 50%, #ff4fa3 80%, #611e3e 100%);
-    }
-    [data-theme="fuchsia"] {
-      --accent: #d946ef;
-      --accent-dark: #521b5b;
-      --accent-glow: rgba(217, 70, 239, 0.4);
-      --accent-glow-strong: rgba(217, 70, 239, 0.85);
-      --accent-bg: rgba(217, 70, 239, 0.12);
-      --title-gradient: linear-gradient(135deg, #ffffff 10%, #eeacf8 50%, #d946ef 80%, #521b5b 100%);
-    }
-    [data-theme="violet"] {
-      --accent: #8b5cf6;
-      --accent-dark: #35235d;
-      --accent-glow: rgba(139, 92, 246, 0.4);
-      --accent-glow-strong: rgba(139, 92, 246, 0.85);
-      --accent-bg: rgba(139, 92, 246, 0.12);
-      --title-gradient: linear-gradient(135deg, #ffffff 10%, #cbb6fb 50%, #8b5cf6 80%, #35235d 100%);
-    }
-    [data-theme="indigo"] {
-      --accent: #6366f1;
-      --accent-dark: #26275c;
-      --accent-glow: rgba(99, 102, 241, 0.4);
-      --accent-glow-strong: rgba(99, 102, 241, 0.85);
-      --accent-bg: rgba(99, 102, 241, 0.12);
-      --title-gradient: linear-gradient(135deg, #ffffff 10%, #b9baf9 50%, #6366f1 80%, #26275c 100%);
-    }
-    [data-theme="royal"] {
-      --accent: #3b6cff;
-      --accent-dark: #162961;
-      --accent-glow: rgba(59, 108, 255, 0.4);
-      --accent-glow-strong: rgba(59, 108, 255, 0.85);
-      --accent-bg: rgba(59, 108, 255, 0.12);
-      --title-gradient: linear-gradient(135deg, #ffffff 10%, #a7bdff 50%, #3b6cff 80%, #162961 100%);
-    }
-    [data-theme="sky"] {
-      --accent: #7dd3fc;
-      --accent-dark: #305060;
-      --accent-glow: rgba(125, 211, 252, 0.4);
-      --accent-glow-strong: rgba(125, 211, 252, 0.85);
-      --accent-bg: rgba(125, 211, 252, 0.12);
-      --title-gradient: linear-gradient(135deg, #ffffff 10%, #c4ebfe 50%, #7dd3fc 80%, #305060 100%);
-    }
-    [data-theme="silver"] {
-      --accent: #cbd5e1;
-      --accent-dark: #4d5156;
-      --accent-glow: rgba(203, 213, 225, 0.4);
-      --accent-glow-strong: rgba(203, 213, 225, 0.85);
-      --accent-bg: rgba(203, 213, 225, 0.12);
-      --title-gradient: linear-gradient(135deg, #ffffff 10%, #e8ecf2 50%, #cbd5e1 80%, #4d5156 100%);
-    }
-    [data-theme="lilac"] {
-      --accent: #c4b5fd;
-      --accent-dark: #4a4560;
-      --accent-glow: rgba(196, 181, 253, 0.4);
-      --accent-glow-strong: rgba(196, 181, 253, 0.85);
-      --accent-bg: rgba(196, 181, 253, 0.12);
-      --title-gradient: linear-gradient(135deg, #ffffff 10%, #e4defe 50%, #c4b5fd 80%, #4a4560 100%);
-    }
-    [data-theme="orange"] .btn-primary,
-    [data-theme="amber"] .btn-primary,
-    [data-theme="gold"] .btn-primary,
-    [data-theme="blue"] .btn-primary,
-    [data-theme="sky"] .btn-primary,
-    [data-theme="silver"] .btn-primary,
-    [data-theme="lilac"] .btn-primary { color: #0b1020; }
-
-    .theme-dropdown { width: 300px; display: block; padding: 14px; max-width: calc(100vw - 24px); }
-    .theme-dropdown .theme-title { font-size: .68rem; letter-spacing: .15em; text-transform: uppercase; color: var(--text-muted); font-weight: 800; margin: 0 0 10px 4px; }
-    .theme-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; }
-    .theme-swatch {
-      display: flex; flex-direction: column; align-items: center; gap: 6px; padding: 9px 2px 7px;
-      border-radius: 12px; background: transparent; color: var(--text-muted);
-      font-size: .64rem; font-weight: 700; line-height: 1.15; text-align: center;
-      border: 1px solid transparent; transition: background .2s ease, border-color .2s ease;
-    }
-    .theme-swatch i { width: 26px; height: 26px; border-radius: 50%; background: var(--c); box-shadow: 0 0 10px color-mix(in srgb, var(--c) 55%, transparent); }
-    .theme-swatch:hover { background: rgba(255,255,255,.08); color: #fff; }
-    .theme-swatch.active { color: #fff; border-color: var(--c); background: color-mix(in srgb, var(--c) 14%, transparent); }
-    @media (max-width: 600px) {
-      .theme-dropdown { position: fixed; top: 88px; left: 12px; right: 12px; width: auto; max-width: none; }
-    }
-
-    /* ===== RENDIMIENTO ===== */
-    html.tab-hidden *, html.tab-hidden *::before, html.tab-hidden *::after { animation-play-state: paused !important; }
-  
-    /* ===== INTERRUPTOR DE ANIMACIONES ===== */
-    .anim-toggle { gap: 10px; }
-    .anim-switch { position: relative; width: 34px; height: 18px; flex: none; border-radius: 99px; background: rgba(255,255,255,.18); transition: background .2s ease; }
-    .anim-switch::after { content: ""; position: absolute; top: 2px; left: 2px; width: 14px; height: 14px; border-radius: 50%; background: #fff; transition: transform .2s ease; }
-    .anim-toggle[aria-pressed="true"] .anim-switch { background: var(--accent); }
-    .anim-toggle[aria-pressed="true"] .anim-switch::after { transform: translateX(16px); }
-    @media (max-width: 760px) { .anim-label { display: none; } }
-
-    /* Con las animaciones desactivadas */
-    html.no-anim, html.no-anim body { scroll-behavior: auto !important; }
-    html.no-anim *, html.no-anim *::before, html.no-anim *::after {
-      animation: none !important; transition: none !important; scroll-behavior: auto !important;
-    }
-    html.no-anim .info-card:hover, html.no-anim .rule-card:hover, html.no-anim .soc-card:hover,
-    html.no-anim .help-item:hover, html.no-anim .pack-feature:hover, html.no-anim .ip-box:hover,
-    html.no-anim .brand-logo:hover .brand-avatar, html.no-anim .btn:hover, html.no-anim .nav-link:hover i { transform: none !important; }
-  </style>
+  <link rel="stylesheet" href="css/styles.css"/>
 </head>
-
 <body>
 
-  <!-- ==========================================================================
-       HEADER & NAVEGACIÓN
-       ========================================================================== -->
   <header class="header-nav">
     <div class="container header-container">
 
-      <!-- Logo / Marca -->
       <a class="brand-logo" data-target="inicio" href="#">
         <div class="brand-avatar">
           <i class="fa-solid fa-gamepad"></i>
@@ -1639,7 +36,6 @@
         </div>
       </a>
 
-      <!-- Menú de navegación principal -->
       <nav>
         <ul class="nav-menu" id="nav-menu">
           <li>
@@ -1663,11 +59,6 @@
             </a>
           </li>
           <li>
-            <a class="nav-link" data-target="redes" href="#">
-              <i class="fa-solid fa-share-nodes"></i> Redes
-            </a>
-          </li>
-          <li>
             <a class="nav-link" data-target="politica" href="#">
               <i class="fa-solid fa-shield-halved"></i> Política
             </a>
@@ -1675,17 +66,14 @@
         </ul>
       </nav>
 
-      <!-- Acciones de Header (Selector de Tema & Menú Móvil) -->
       <div class="header-actions">
         
-        <!-- Interruptor de animaciones -->
         <button class="theme-btn anim-toggle" id="anim-toggle-btn" type="button" aria-pressed="true" title="Activar o desactivar animaciones">
           <i class="fa-solid fa-wand-magic-sparkles"></i>
           <span class="anim-label">Animaciones</span>
           <span class="anim-switch"></span>
         </button>
 
-        <!-- Selector de Modo Oscuro -->
         <div class="theme-selector">
           <button class="theme-btn" id="theme-toggle-btn" aria-label="Cambiar Tema">
             <span class="theme-dot"></span>
@@ -1696,7 +84,6 @@
           <div class="theme-dropdown" id="theme-dropdown"></div>
         </div>
 
-        <!-- Botón Menú Móvil -->
         <button class="mobile-toggle" id="mobile-toggle-btn" aria-label="Abrir Menú">
           <i class="fa-solid fa-bars"></i>
         </button>
@@ -1706,18 +93,13 @@
     </div>
   </header>
 
-  <!-- ==========================================================================
-       CONTENIDO PRINCIPAL
-       ========================================================================== -->
   <main>
 
-    <!-- 1. SECCIÓN: INICIO -->
     <section class="page-section active" id="inicio">
       <div class="container hero">
 
         <div class="hero-grid">
 
-          <!-- Columna principal -->
           <div class="hero-main">
             <div class="tiktok-badge">
               <i class="fa-brands fa-tiktok"></i>
@@ -1734,10 +116,37 @@
               Únete a la comunidad de Nanovas, explora, construye y diviértete en nuestro servidor.
             </p>
 
+            <!-- NUEVO: logo del servidor + datos de conexión (único bloque añadido en Inicio) -->
+            <div class="server-hero">
+              <div class="server-logo">
+                <svg class="grass-cube" width="76" height="73" viewBox="0 0 100 96" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"><style>.gc-g1{fill:#6fbf4a}.gc-g2{fill:#5fae3f}.gc-g3{fill:#4f9b35}.gc-g4{fill:#80cc58}.gc-d1{fill:#8b5e3c}.gc-d2{fill:#7a5232}.gc-d3{fill:#6b4528}.gc-d4{fill:#9a6b44}.gc-s1{fill:#85807a}</style><g transform="matrix(5 2.5 0 5 10 28)"><rect x="0" y="0" width="1.06" height="1.06" class="gc-g2"/><rect x="1" y="0" width="1.06" height="1.06" class="gc-g1"/><rect x="2" y="0" width="1.06" height="1.06" class="gc-g1"/><rect x="3" y="0" width="1.06" height="1.06" class="gc-g2"/><rect x="4" y="0" width="1.06" height="1.06" class="gc-g2"/><rect x="5" y="0" width="1.06" height="1.06" class="gc-g1"/><rect x="6" y="0" width="1.06" height="1.06" class="gc-g3"/><rect x="7" y="0" width="1.06" height="1.06" class="gc-g1"/><rect x="0" y="1" width="1.06" height="1.06" class="gc-g1"/><rect x="1" y="1" width="1.06" height="1.06" class="gc-g1"/><rect x="2" y="1" width="1.06" height="1.06" class="gc-g4"/><rect x="3" y="1" width="1.06" height="1.06" class="gc-g3"/><rect x="4" y="1" width="1.06" height="1.06" class="gc-g4"/><rect x="5" y="1" width="1.06" height="1.06" class="gc-g3"/><rect x="6" y="1" width="1.06" height="1.06" class="gc-g1"/><rect x="7" y="1" width="1.06" height="1.06" class="gc-g2"/><rect x="0" y="2" width="1.06" height="1.06" class="gc-d1"/><rect x="1" y="2" width="1.06" height="1.06" class="gc-g4"/><rect x="2" y="2" width="1.06" height="1.06" class="gc-g2"/><rect x="3" y="2" width="1.06" height="1.06" class="gc-g3"/><rect x="4" y="2" width="1.06" height="1.06" class="gc-g3"/><rect x="5" y="2" width="1.06" height="1.06" class="gc-g3"/><rect x="6" y="2" width="1.06" height="1.06" class="gc-g4"/><rect x="7" y="2" width="1.06" height="1.06" class="gc-d2"/><rect x="0" y="3" width="1.06" height="1.06" class="gc-d2"/><rect x="1" y="3" width="1.06" height="1.06" class="gc-d2"/><rect x="2" y="3" width="1.06" height="1.06" class="gc-d1"/><rect x="3" y="3" width="1.06" height="1.06" class="gc-d1"/><rect x="4" y="3" width="1.06" height="1.06" class="gc-d4"/><rect x="5" y="3" width="1.06" height="1.06" class="gc-d1"/><rect x="6" y="3" width="1.06" height="1.06" class="gc-d4"/><rect x="7" y="3" width="1.06" height="1.06" class="gc-d1"/><rect x="0" y="4" width="1.06" height="1.06" class="gc-s1"/><rect x="1" y="4" width="1.06" height="1.06" class="gc-d4"/><rect x="2" y="4" width="1.06" height="1.06" class="gc-d3"/><rect x="3" y="4" width="1.06" height="1.06" class="gc-d3"/><rect x="4" y="4" width="1.06" height="1.06" class="gc-d3"/><rect x="5" y="4" width="1.06" height="1.06" class="gc-d3"/><rect x="6" y="4" width="1.06" height="1.06" class="gc-d1"/><rect x="7" y="4" width="1.06" height="1.06" class="gc-d2"/><rect x="0" y="5" width="1.06" height="1.06" class="gc-d4"/><rect x="1" y="5" width="1.06" height="1.06" class="gc-d1"/><rect x="2" y="5" width="1.06" height="1.06" class="gc-s1"/><rect x="3" y="5" width="1.06" height="1.06" class="gc-d4"/><rect x="4" y="5" width="1.06" height="1.06" class="gc-d2"/><rect x="5" y="5" width="1.06" height="1.06" class="gc-d2"/><rect x="6" y="5" width="1.06" height="1.06" class="gc-d2"/><rect x="7" y="5" width="1.06" height="1.06" class="gc-d2"/><rect x="0" y="6" width="1.06" height="1.06" class="gc-s1"/><rect x="1" y="6" width="1.06" height="1.06" class="gc-d2"/><rect x="2" y="6" width="1.06" height="1.06" class="gc-d1"/><rect x="3" y="6" width="1.06" height="1.06" class="gc-d1"/><rect x="4" y="6" width="1.06" height="1.06" class="gc-d3"/><rect x="5" y="6" width="1.06" height="1.06" class="gc-s1"/><rect x="6" y="6" width="1.06" height="1.06" class="gc-d2"/><rect x="7" y="6" width="1.06" height="1.06" class="gc-d2"/><rect x="0" y="7" width="1.06" height="1.06" class="gc-d2"/><rect x="1" y="7" width="1.06" height="1.06" class="gc-d3"/><rect x="2" y="7" width="1.06" height="1.06" class="gc-d1"/><rect x="3" y="7" width="1.06" height="1.06" class="gc-d3"/><rect x="4" y="7" width="1.06" height="1.06" class="gc-d2"/><rect x="5" y="7" width="1.06" height="1.06" class="gc-d3"/><rect x="6" y="7" width="1.06" height="1.06" class="gc-d1"/><rect x="7" y="7" width="1.06" height="1.06" class="gc-d1"/><rect width="8" height="8" fill="#000" opacity="0.12"/></g><g transform="matrix(5 -2.5 0 5 50 48)"><rect x="0" y="0" width="1.06" height="1.06" class="gc-g4"/><rect x="1" y="0" width="1.06" height="1.06" class="gc-g1"/><rect x="2" y="0" width="1.06" height="1.06" class="gc-g2"/><rect x="3" y="0" width="1.06" height="1.06" class="gc-g1"/><rect x="4" y="0" width="1.06" height="1.06" class="gc-g1"/><rect x="5" y="0" width="1.06" height="1.06" class="gc-g2"/><rect x="6" y="0" width="1.06" height="1.06" class="gc-g3"/><rect x="7" y="0" width="1.06" height="1.06" class="gc-g1"/><rect x="0" y="1" width="1.06" height="1.06" class="gc-g4"/><rect x="1" y="1" width="1.06" height="1.06" class="gc-g1"/><rect x="2" y="1" width="1.06" height="1.06" class="gc-g3"/><rect x="3" y="1" width="1.06" height="1.06" class="gc-g1"/><rect x="4" y="1" width="1.06" height="1.06" class="gc-g2"/><rect x="5" y="1" width="1.06" height="1.06" class="gc-g2"/><rect x="6" y="1" width="1.06" height="1.06" class="gc-g3"/><rect x="7" y="1" width="1.06" height="1.06" class="gc-g4"/><rect x="0" y="2" width="1.06" height="1.06" class="gc-g3"/><rect x="1" y="2" width="1.06" height="1.06" class="gc-d2"/><rect x="2" y="2" width="1.06" height="1.06" class="gc-d3"/><rect x="3" y="2" width="1.06" height="1.06" class="gc-g3"/><rect x="4" y="2" width="1.06" height="1.06" class="gc-g3"/><rect x="5" y="2" width="1.06" height="1.06" class="gc-d4"/><rect x="6" y="2" width="1.06" height="1.06" class="gc-d1"/><rect x="7" y="2" width="1.06" height="1.06" class="gc-d1"/><rect x="0" y="3" width="1.06" height="1.06" class="gc-d2"/><rect x="1" y="3" width="1.06" height="1.06" class="gc-d4"/><rect x="2" y="3" width="1.06" height="1.06" class="gc-d3"/><rect x="3" y="3" width="1.06" height="1.06" class="gc-d1"/><rect x="4" y="3" width="1.06" height="1.06" class="gc-d1"/><rect x="5" y="3" width="1.06" height="1.06" class="gc-d3"/><rect x="6" y="3" width="1.06" height="1.06" class="gc-d1"/><rect x="7" y="3" width="1.06" height="1.06" class="gc-d1"/><rect x="0" y="4" width="1.06" height="1.06" class="gc-d3"/><rect x="1" y="4" width="1.06" height="1.06" class="gc-d4"/><rect x="2" y="4" width="1.06" height="1.06" class="gc-d2"/><rect x="3" y="4" width="1.06" height="1.06" class="gc-s1"/><rect x="4" y="4" width="1.06" height="1.06" class="gc-d4"/><rect x="5" y="4" width="1.06" height="1.06" class="gc-d2"/><rect x="6" y="4" width="1.06" height="1.06" class="gc-d1"/><rect x="7" y="4" width="1.06" height="1.06" class="gc-d2"/><rect x="0" y="5" width="1.06" height="1.06" class="gc-d3"/><rect x="1" y="5" width="1.06" height="1.06" class="gc-d2"/><rect x="2" y="5" width="1.06" height="1.06" class="gc-d4"/><rect x="3" y="5" width="1.06" height="1.06" class="gc-d2"/><rect x="4" y="5" width="1.06" height="1.06" class="gc-d1"/><rect x="5" y="5" width="1.06" height="1.06" class="gc-d3"/><rect x="6" y="5" width="1.06" height="1.06" class="gc-d1"/><rect x="7" y="5" width="1.06" height="1.06" class="gc-d3"/><rect x="0" y="6" width="1.06" height="1.06" class="gc-d2"/><rect x="1" y="6" width="1.06" height="1.06" class="gc-d1"/><rect x="2" y="6" width="1.06" height="1.06" class="gc-d3"/><rect x="3" y="6" width="1.06" height="1.06" class="gc-d1"/><rect x="4" y="6" width="1.06" height="1.06" class="gc-d2"/><rect x="5" y="6" width="1.06" height="1.06" class="gc-d1"/><rect x="6" y="6" width="1.06" height="1.06" class="gc-s1"/><rect x="7" y="6" width="1.06" height="1.06" class="gc-d2"/><rect x="0" y="7" width="1.06" height="1.06" class="gc-d3"/><rect x="1" y="7" width="1.06" height="1.06" class="gc-d3"/><rect x="2" y="7" width="1.06" height="1.06" class="gc-d4"/><rect x="3" y="7" width="1.06" height="1.06" class="gc-d1"/><rect x="4" y="7" width="1.06" height="1.06" class="gc-d1"/><rect x="5" y="7" width="1.06" height="1.06" class="gc-d2"/><rect x="6" y="7" width="1.06" height="1.06" class="gc-d1"/><rect x="7" y="7" width="1.06" height="1.06" class="gc-d3"/><rect width="8" height="8" fill="#000" opacity="0.32"/></g><g transform="matrix(5 2.5 -5 2.5 50 8)"><rect x="0" y="0" width="1.06" height="1.06" class="gc-g3"/><rect x="1" y="0" width="1.06" height="1.06" class="gc-g1"/><rect x="2" y="0" width="1.06" height="1.06" class="gc-g1"/><rect x="3" y="0" width="1.06" height="1.06" class="gc-g1"/><rect x="4" y="0" width="1.06" height="1.06" class="gc-g2"/><rect x="5" y="0" width="1.06" height="1.06" class="gc-g4"/><rect x="6" y="0" width="1.06" height="1.06" class="gc-g2"/><rect x="7" y="0" width="1.06" height="1.06" class="gc-g4"/><rect x="0" y="1" width="1.06" height="1.06" class="gc-g3"/><rect x="1" y="1" width="1.06" height="1.06" class="gc-g1"/><rect x="2" y="1" width="1.06" height="1.06" class="gc-g4"/><rect x="3" y="1" width="1.06" height="1.06" class="gc-g1"/><rect x="4" y="1" width="1.06" height="1.06" class="gc-g3"/><rect x="5" y="1" width="1.06" height="1.06" class="gc-g3"/><rect x="6" y="1" width="1.06" height="1.06" class="gc-g3"/><rect x="7" y="1" width="1.06" height="1.06" class="gc-g2"/><rect x="0" y="2" width="1.06" height="1.06" class="gc-g3"/><rect x="1" y="2" width="1.06" height="1.06" class="gc-g1"/><rect x="2" y="2" width="1.06" height="1.06" class="gc-g4"/><rect x="3" y="2" width="1.06" height="1.06" class="gc-g2"/><rect x="4" y="2" width="1.06" height="1.06" class="gc-g4"/><rect x="5" y="2" width="1.06" height="1.06" class="gc-g2"/><rect x="6" y="2" width="1.06" height="1.06" class="gc-g2"/><rect x="7" y="2" width="1.06" height="1.06" class="gc-g4"/><rect x="0" y="3" width="1.06" height="1.06" class="gc-g1"/><rect x="1" y="3" width="1.06" height="1.06" class="gc-g4"/><rect x="2" y="3" width="1.06" height="1.06" class="gc-g3"/><rect x="3" y="3" width="1.06" height="1.06" class="gc-g3"/><rect x="4" y="3" width="1.06" height="1.06" class="gc-g1"/><rect x="5" y="3" width="1.06" height="1.06" class="gc-g1"/><rect x="6" y="3" width="1.06" height="1.06" class="gc-g3"/><rect x="7" y="3" width="1.06" height="1.06" class="gc-g4"/><rect x="0" y="4" width="1.06" height="1.06" class="gc-g3"/><rect x="1" y="4" width="1.06" height="1.06" class="gc-g3"/><rect x="2" y="4" width="1.06" height="1.06" class="gc-g2"/><rect x="3" y="4" width="1.06" height="1.06" class="gc-g2"/><rect x="4" y="4" width="1.06" height="1.06" class="gc-g2"/><rect x="5" y="4" width="1.06" height="1.06" class="gc-g1"/><rect x="6" y="4" width="1.06" height="1.06" class="gc-g2"/><rect x="7" y="4" width="1.06" height="1.06" class="gc-g2"/><rect x="0" y="5" width="1.06" height="1.06" class="gc-g2"/><rect x="1" y="5" width="1.06" height="1.06" class="gc-g1"/><rect x="2" y="5" width="1.06" height="1.06" class="gc-g3"/><rect x="3" y="5" width="1.06" height="1.06" class="gc-g3"/><rect x="4" y="5" width="1.06" height="1.06" class="gc-g1"/><rect x="5" y="5" width="1.06" height="1.06" class="gc-g3"/><rect x="6" y="5" width="1.06" height="1.06" class="gc-g2"/><rect x="7" y="5" width="1.06" height="1.06" class="gc-g1"/><rect x="0" y="6" width="1.06" height="1.06" class="gc-g1"/><rect x="1" y="6" width="1.06" height="1.06" class="gc-g3"/><rect x="2" y="6" width="1.06" height="1.06" class="gc-g2"/><rect x="3" y="6" width="1.06" height="1.06" class="gc-g4"/><rect x="4" y="6" width="1.06" height="1.06" class="gc-g3"/><rect x="5" y="6" width="1.06" height="1.06" class="gc-g3"/><rect x="6" y="6" width="1.06" height="1.06" class="gc-g3"/><rect x="7" y="6" width="1.06" height="1.06" class="gc-g4"/><rect x="0" y="7" width="1.06" height="1.06" class="gc-g2"/><rect x="1" y="7" width="1.06" height="1.06" class="gc-g4"/><rect x="2" y="7" width="1.06" height="1.06" class="gc-g3"/><rect x="3" y="7" width="1.06" height="1.06" class="gc-g3"/><rect x="4" y="7" width="1.06" height="1.06" class="gc-g2"/><rect x="5" y="7" width="1.06" height="1.06" class="gc-g2"/><rect x="6" y="7" width="1.06" height="1.06" class="gc-g4"/><rect x="7" y="7" width="1.06" height="1.06" class="gc-g1"/><rect width="8" height="8" fill="#000" opacity="0"/></g><polygon points="50,8 90,28 90,68 50,88 10,68 10,28" fill="none" stroke="#14110e" stroke-opacity=".55" stroke-width="1.6" stroke-linejoin="round"/></svg>
+                <div class="server-logo-text">
+                  <span class="sl-top">Servidor</span>
+                  <span class="sl-name">Nanovas</span>
+                  <span class="sl-version">1.21.11</span>
+                </div>
+              </div>
+
+              <div class="ip-card" role="group" aria-label="Datos de conexión al servidor">
+                <div class="ip-field">
+                  <span class="ip-field-label">IP</span>
+                  <code class="ip-field-value">Mantenimiento</code>
+                  <button class="ip-copy-btn" type="button" data-copy="Mantenimiento" aria-label="Copiar la IP del servidor">
+                    <i class="fa-regular fa-copy"></i><span class="ip-copy-label">Copiar</span>
+                  </button>
+                </div>
+                <div class="ip-field">
+                  <span class="ip-field-label">Puerto</span>
+                  <code class="ip-field-value">Mantenimiento</code>
+                  <button class="ip-copy-btn" type="button" data-copy="Mantenimiento" aria-label="Copiar el puerto del servidor">
+                    <i class="fa-regular fa-copy"></i><span class="ip-copy-label">Copiar</span>
+                  </button>
+                </div>
+                <p class="ip-note"><i class="fa-solid fa-circle-info"></i> Java y Bedrock usan la misma IP y el mismo puerto.</p>
+              </div>
+            </div>
+
             <div class="hero-actions">
-              <a class="btn btn-primary" href="#guia-bedrock" id="go-guide">
-                <i class="fa-solid fa-gamepad"></i> Cómo entrar
-              </a>
               <a class="btn btn-ghost" href="#" data-target="tienda">
                 <i class="fa-solid fa-download"></i> Pack de Mods
               </a>
@@ -1750,93 +159,76 @@
             </div>
           </div>
 
-          <!-- Tarjeta de estado en tiempo real -->
-          <aside class="server-card" aria-live="polite">
-            <div class="sc-head">
-              <div class="sc-title">
-                <div class="sc-icon"><i class="fa-solid fa-server"></i></div>
-                <div>
-                  <h3>Servidor Nanovas</h3>
-                  <small id="sc-motd">Consultando estado…</small>
-                </div>
-              </div>
-              <span class="status-pill checking" id="status-pill"><span class="dot"></span><span id="status-text">COMPROBANDO</span></span>
+          <aside class="hero-social-card" aria-label="Redes sociales de Nanachandg">
+            <div class="hsc-profile">
+              <div class="hsc-avatar"><span>Nana</span><img src="images/nana.jpg" alt="Foto de perfil de Nanachandg"></div>
+              <h3>Nanachandg</h3>
+              <p>Creadora de la comunidad<br/><strong>Nanovas Minecraft</strong></p>
             </div>
-
-            <div class="sc-players">
-              <div class="sc-count"><span id="players">–</span><span class="sep">/</span><span class="max" id="players-max">–</span></div>
-              <div class="sc-label">Jugadores conectados</div>
-              <div class="sc-bar"><div class="sc-bar-fill" id="players-bar"></div></div>
-            </div>
-
-            <div class="sc-meta">
-              <div class="sc-meta-item"><span>Versión</span><strong id="sc-version">1.21.11</strong></div>
-              <div class="sc-meta-item"><span>Modo</span><strong>Survival</strong></div>
-            </div>
-
-            <div class="sc-ip">
-              <div class="ip-info">
-                <span class="ip-label">DIRECCIÓN DE SERVIDOR</span>
-                <div class="ip-address" id="ip-text">169.40.54.3:25573</div>
-              </div>
-              <button class="btn btn-primary" id="copy-button">
-                <i class="fa-solid fa-copy"></i> Copiar IP
-              </button>
-            </div>
-
-            <div class="sc-foot">
-              <span id="sc-updated">Actualización automática cada 30 s</span>
-              <button class="sc-refresh" id="sc-refresh" type="button"><i class="fa-solid fa-rotate"></i> Actualizar</button>
+            <div class="hsc-list">
+              <a class="hsc-row hsc-discord hsc-featured" href="https://discord.gg/pgbjbspux6" target="_blank" rel="noopener noreferrer">
+                <span class="hsc-icon"><i class="fa-brands fa-discord"></i></span>
+                <span class="hsc-info">
+                  <strong>Discord</strong>
+                  <small class="hsc-counts">
+                    <span class="hsc-count"><i class="fa-solid fa-users"></i><b id="dc-members"></b> miembros</span>
+                    <span class="hsc-count"><i class="hsc-dot"></i><b id="dc-online"></b> en línea</span>
+                  </small>
+                </span>
+                <span class="hsc-btn">Unirme</span>
+              </a>
+              <a class="hsc-row hsc-youtube" href="https://www.youtube.com/@Nanachangamer" target="_blank" rel="noopener noreferrer">
+                <span class="hsc-icon"><i class="fa-brands fa-youtube"></i></span>
+                <span class="hsc-info"><strong>YouTube</strong><small>@Nanachangamer</small></span>
+                <span class="hsc-btn">Seguir</span>
+              </a>
+              <a class="hsc-row hsc-twitch" href="https://www.twitch.tv/nanachandg" target="_blank" rel="noopener noreferrer">
+                <span class="hsc-icon"><i class="fa-brands fa-twitch"></i></span>
+                <span class="hsc-info"><strong>Twitch</strong><small>nanachandg</small></span>
+                <span class="hsc-btn">Seguir</span>
+              </a>
+              <a class="hsc-row hsc-kick" href="https://kick.com/nanachandg" target="_blank" rel="noopener noreferrer">
+                <span class="hsc-icon"><span class="hsc-kick">K</span></span>
+                <span class="hsc-info"><strong>Kick</strong><small>nanachandg</small></span>
+                <span class="hsc-btn">Seguir</span>
+              </a>
+              <a class="hsc-row hsc-epal" href="https://www.epal.gg/@1532084974" target="_blank" rel="noopener noreferrer">
+                <span class="hsc-icon"><i class="fa-solid fa-gamepad"></i></span>
+                <span class="hsc-info"><strong>ePal</strong><small>Nanachandg</small></span>
+                <span class="hsc-btn">Seguir</span>
+              </a>
+              <a class="hsc-row hsc-tiktok" href="https://www.tiktok.com/@nanachandg" target="_blank" rel="noopener noreferrer">
+                <span class="hsc-icon"><i class="fa-brands fa-tiktok"></i></span>
+                <span class="hsc-info"><strong>TikTok</strong><small>@nanachandg</small></span>
+                <span class="hsc-btn">Seguir</span>
+              </a>
+              <a class="hsc-row hsc-instagram" href="https://www.instagram.com/nanalassodesigner" target="_blank" rel="noopener noreferrer">
+                <span class="hsc-icon"><i class="fa-brands fa-instagram"></i></span>
+                <span class="hsc-info"><strong>Instagram</strong><small>@nanalassodesigner</small></span>
+                <span class="hsc-btn">Seguir</span>
+              </a>
             </div>
           </aside>
 
-        </div>
-
-        <!-- Guía de Conexión Bedrock -->
-        <div class="guide-block" id="guia-bedrock">
-          <div class="section-heading">
-            <p class="eyebrow"><i class="fa-solid fa-mobile-screen"></i> Guía paso a paso</p>
-            <h2 class="section-title">¿Cómo entrar desde Minecraft Bedrock?</h2>
-            <p style="color:var(--text-muted); margin-top:12px;">
-              Sigue estos sencillos pasos para conectarte desde móviles, consolas o Windows 10/11.
-            </p>
+          <!-- Elementos heredados ocultos: evitan errores en script.js que aún los busca por id -->
+          <div hidden aria-hidden="true">
+            <small id="sc-motd"></small>
+            <span id="status-pill"><span id="status-text"></span></span>
+            <span id="players"></span><span id="players-max"></span>
+            <div id="players-bar"></div>
+            <strong id="sc-version"></strong>
+            <div id="ip-text"></div>
+            <button type="button" id="copy-button"></button>
+            <span id="sc-updated"></span>
+            <button type="button" id="sc-refresh"></button>
+            <a id="go-guide" href="#"></a>
           </div>
 
-          <div class="info-layout">
-            <div class="info-card">
-              <div class="step-number">1</div>
-              <h3>Minecraft Bedrock</h3>
-              <p>
-                Abre tu juego de Minecraft Bedrock y asegúrate de tener una versión actualizada y compatible con el servidor.
-              </p>
-            </div>
-
-            <div class="info-card">
-              <div class="step-number">2</div>
-              <h3>Agregar Servidor</h3>
-              <p>
-                Dirígete a la pestaña de "Servidores" y pulsa en "Añadir servidor".
-              </p>
-              <ul>
-                <li><strong>Dirección IP:</strong> 169.40.54.3</li>
-                <li><strong>Puerto:</strong> 25573</li>
-              </ul>
-            </div>
-
-            <div class="info-card full">
-              <div class="step-number">3</div>
-              <h3>¡A jugar!</h3>
-              <p>
-                Guarda la configuración del servidor, selecciónalo en tu lista y conéctate. Si encuentras algún inconveniente para entrar, puedes pedir ayuda en nuestro Discord oficial.
-              </p>
-            </div>
-          </div>
         </div>
 
       </div>
     </section>
 
-    <!-- 2. SECCIÓN: MODPACK MINECRAFT -->
     <section class="page-section" id="tienda">
       <div class="container pack-hero">
 
@@ -1848,184 +240,141 @@
           </p>
         </div>
 
-        <div class="hero-grid">
+        <!-- EDITAR: versión, peso y enlace de descarga se cambian en esta tarjeta -->
+        <article class="mp-card">
 
-          <!-- Información del pack -->
-          <div class="pack-main">
-            <div class="pack-tags">
-              <span class="pack-tag">Gratis</span>
-              <span class="pack-tag">Minecraft 26.1.2 / 1.21</span>
-              <span class="pack-tag">Oficial</span>
+          <div class="mp-stats">
+            <div class="mp-stat">
+              <i class="fa-solid fa-cube"></i>
+              <span>Minecraft</span>
+              <strong>26.1.3</strong>
             </div>
-
-            <h3><i class="fa-solid fa-cubes" style="color:var(--accent); margin-right:10px;"></i>Pack de Mods Nanovas</h3>
-            <p>Selección optimizada para MINECRAFT 26.1.2 / 1.21, pensada para jugar fluido en nuestro servidor.</p>
-
-            <div class="pack-features">
-              <div class="pack-feature">
-                <i class="fa-solid fa-circle-check"></i>
-                <div><strong>Compatible</strong><span>Funciona con la versión actual del servidor.</span></div>
-              </div>
-              <div class="pack-feature">
-                <i class="fa-solid fa-gauge-high"></i>
-                <div><strong>Más FPS</strong><span>Alto rendimiento y aumento de FPS.</span></div>
-              </div>
-              <div class="pack-feature">
-                <i class="fa-solid fa-arrows-rotate"></i>
-                <div><strong>Siempre al día</strong><span>Actualizaciones y mejoras constantes.</span></div>
-              </div>
-              <div class="pack-feature">
-                <i class="fa-brands fa-discord"></i>
-                <div><strong>Soporte</strong><span>Ayuda de instalación por Discord.</span></div>
-              </div>
+            <div class="mp-stat">
+              <i class="fa-solid fa-tag"></i>
+              <span>Versión del pack</span>
+              <strong>v1.1</strong>
             </div>
-
-            <div class="pack-cta">
-              <a class="btn btn-primary" href="https://pixeldrain.com/u/xw8YdyP6" target="_blank" rel="noopener noreferrer">
-                <i class="fa-solid fa-download"></i> Ir a la página de descarga
-              </a>
+            <div class="mp-stat">
+              <i class="fa-solid fa-weight-hanging"></i>
+              <span>Peso</span>
+              <strong>192 MB</strong>
             </div>
           </div>
 
-          <!-- Verificación de seguridad -->
-          <aside class="server-card security-card">
-            <div class="security-shield"><i class="fa-solid fa-shield-halved"></i></div>
-            <h3>Verificación de seguridad</h3>
-            <span class="status-pill online"><span class="dot"></span>ANÁLISIS EXITOSO</span>
+          <a class="mp-btn" href="https://pixeldrain.com/u/xw8YdyP6" target="_blank" rel="noopener noreferrer">
+            <span class="mp-btn-icon"><i class="fa-solid fa-download"></i></span>
+            <span class="mp-btn-text">
+              <strong>Descargar Pack de Mods</strong>
+              <small>v1.1 · 192 MB · Gratis · PixelDrain</small>
+            </span>
+            <i class="fa-solid fa-arrow-right mp-btn-arrow"></i>
+          </a>
 
-            <ul class="security-list">
-              <li><i class="fa-solid fa-circle-check"></i> Sin virus ni malware detectados</li>
-              <li><i class="fa-solid fa-circle-check"></i> Sin rastreadores ni código oculto</li>
-              <li><i class="fa-solid fa-circle-check"></i> Archivo analizado con VirusTotal</li>
-            </ul>
-
-            <div class="vt-box">
-              <p>No tienes que confiar en nuestra palabra: puedes comprobarlo tú mismo analizando el archivo en VirusTotal.</p>
-              <a class="btn btn-primary" id="vt-link" href="https://www.virustotal.com/" target="_blank" rel="noopener noreferrer">
-                <i class="fa-solid fa-magnifying-glass"></i> Verificar en VirusTotal
-              </a>
-            </div>
-          </aside>
-
-        </div>
-
-        <!-- Pasos -->
-        <div class="pack-steps">
-          <div class="section-heading" style="text-align:center;">
-            <p class="eyebrow"><i class="fa-solid fa-list-check"></i> Antes de instalar</p>
-            <h2 class="section-title">Descarga segura en 3 pasos</h2>
+          <div class="mp-how">
+            <h4>Cómo instalarlo</h4>
+            <ol class="mp-steps">
+              <li><span class="mp-step-num">1</span><p><strong>Descarga:</strong> pulsa el botón verde y toca «Descargar» en PixelDrain.</p></li>
+              <li><span class="mp-step-num">2</span><p><strong>Instala:</strong> copia los archivos a la carpeta mods de tu Minecraft.</p></li>
+              <li><span class="mp-step-num">3</span><p><strong>Juega:</strong> entra al servidor. ¿Problemas? Abre un ticket en Discord.</p></li>
+            </ol>
           </div>
 
-          <div class="info-layout">
-            <div class="info-card">
-              <div class="step-number">1</div>
-              <h3>Revisa tu versión</h3>
-              <p>Verifica que tu Minecraft sea compatible (26.1.2 / 1.21) antes de realizar la instalación.</p>
+          <div class="mp-verify">
+            <span class="mp-verify-shield"><i class="fa-solid fa-shield-halved"></i></span>
+            <div class="mp-verify-text">
+              <strong>Sin virus ni malware</strong>
+              <span>Archivo analizado con VirusTotal</span>
             </div>
-            <div class="info-card">
-              <div class="step-number">2</div>
-              <h3>Analiza el archivo</h3>
-              <p>Descarga el pack y, si quieres, súbelo a VirusTotal para comprobar que está limpio.</p>
-            </div>
-            <div class="info-card">
-              <div class="step-number">3</div>
-              <h3>Instala y juega</h3>
-              <p>Si tienes algún problema, abre un ticket de soporte en Discord y te ayudaremos paso a paso.</p>
-            </div>
+            <a class="mp-vt-btn" id="vt-link" href="https://www.virustotal.com/" target="_blank" rel="noopener noreferrer">Verificar</a>
           </div>
 
-          <div class="pack-note">
-            <i class="fa-solid fa-circle-info"></i>
-            <span>El modpack es totalmente gratuito. Contenido digital de uso personal.</span>
-          </div>
-        </div>
+        </article>
 
       </div>
     </section>
 
-    <!-- 3. SECCIÓN: SOPORTE -->
     <section class="page-section" id="soporte">
       <div class="container">
 
         <div class="section-heading">
-          <p class="eyebrow"><i class="fa-solid fa-life-ring"></i> Atención a Jugadores</p>
+          <p class="eyebrow"><i class="fa-solid fa-life-ring"></i> Atención a jugadores</p>
           <h2 class="section-title">Centro de Soporte</h2>
           <p style="color:var(--text-muted); margin-top:12px;">
-            ¿Tienes dudas con el servidor o problemas con la instalación de mods? Nuestro equipo está listo para ayudarte.
+            Resuelve tus dudas al instante o escríbenos en Discord. Empieza por los datos para conectarte.
           </p>
         </div>
 
-        <div class="hero-grid">
-
-          <!-- Tarjeta de Discord en tiempo real -->
-          <div class="discord-card" aria-live="polite">
-            <div class="dc-head">
-              <div class="dc-logo" id="dc-logo"><i class="fa-brands fa-discord"></i></div>
-              <div>
-                <h3 id="dc-name">Comunidad en Discord</h3>
-                <small>Servidor oficial de Nanovas</small>
-              </div>
-            </div>
-
-            <p class="dc-desc">
-              Únete a nuestra comunidad oficial para recibir atención personalizada, enterarte de eventos y chatear con otros jugadores de Nanovas.
-            </p>
-
-            <div class="dc-stats">
-              <div class="dc-stat">
-                <strong id="dc-members">–</strong>
-                <span><i class="dot-members"></i> Miembros</span>
-              </div>
-              <div class="dc-stat">
-                <strong id="dc-online">–</strong>
-                <span><i class="dot-online"></i> En línea</span>
-              </div>
-            </div>
-
-            <a class="btn btn-discord btn-wide" id="dc-join" href="https://discord.gg/pgbjbspux6" target="_blank" rel="noopener noreferrer">
-              <i class="fa-brands fa-discord"></i> Entrar al Discord Oficial
-            </a>
-
-            <div class="dc-foot">
-              <span id="dc-updated">Actualización automática cada 60 s</span>
+        <div class="support-connect">
+          <div class="support-connect-head">
+            <span class="support-step">1</span>
+            <div>
+              <h3>Conéctate al servidor</h3>
+              <p>Versión oficial: <strong>Minecraft 1.21.11</strong>. Copia estos datos y pégalos en tu juego.</p>
             </div>
           </div>
 
-          <!-- Canales de ayuda -->
-          <div class="support-side">
+          <div class="ip-card" role="group" aria-label="Datos de conexión al servidor">
+            <div class="ip-field">
+              <span class="ip-field-label">IP</span>
+              <code class="ip-field-value">Matenimiento</code>
+              <button class="ip-copy-btn" type="button" data-copy="Matenimiento" aria-label="Copiar la IP del servidor">
+                <i class="fa-regular fa-copy"></i><span class="ip-copy-label">Copiar</span>
+              </button>
+            </div>
+            <div class="ip-field">
+              <span class="ip-field-label">Puerto</span>
+              <code class="ip-field-value">Mantenimiento</code>
+              <button class="ip-copy-btn" type="button" data-copy="Matenimiento" aria-label="Copiar el puerto del servidor">
+                <i class="fa-regular fa-copy"></i><span class="ip-copy-label">Copiar</span>
+              </button>
+            </div>
+            <p class="ip-note"><i class="fa-solid fa-circle-info"></i> Java y Bedrock usan la misma IP y el mismo puerto.</p>
+          </div>
+        </div>
+
+        <div class="support-help">
+          <div class="support-help-head">
+            <span class="support-step">2</span>
+            <h3>¿Qué necesitas?</h3>
+          </div>
+
+          <div class="support-help-grid">
             <div class="help-item">
-              <div class="help-icon"><i class="fa-solid fa-ticket"></i></div>
+              <div class="help-icon"><i class="fa-solid fa-plug-circle-xmark"></i></div>
               <div>
-                <h4>Abrir un ticket</h4>
-                <p>Para problemas personales o de cuenta, abre un ticket en Discord y el equipo te atenderá de forma privada.</p>
+                <h4>No puedo entrar</h4>
+                <p>Revisa que la IP y el puerto estén bien escritos y que uses la versión 1.21.11. Si sigue sin funcionar, cuéntanos en Discord qué mensaje de error te sale.</p>
               </div>
             </div>
             <div class="help-item">
               <div class="help-icon"><i class="fa-solid fa-puzzle-piece"></i></div>
               <div>
                 <h4>Ayuda con los mods</h4>
-                <p>¿Errores al instalar el Pack de Mods? Te guiamos paso a paso hasta que quede funcionando.</p>
+                <p>Los pasos de instalación están en la sección del Pack de Mods. Si algo falla, te guiamos hasta que funcione.</p>
+                <a class="help-link" href="#" data-target="tienda">Ir al Pack de Mods <i class="fa-solid fa-arrow-right"></i></a>
               </div>
             </div>
             <div class="help-item">
-              <div class="help-icon"><i class="fa-solid fa-plug-circle-xmark"></i></div>
+              <div class="help-icon"><i class="fa-solid fa-ticket"></i></div>
               <div>
-                <h4>Problemas de conexión</h4>
-                <p>Si no puedes entrar al servidor, revisa el estado en la página de inicio y consúltanos en Discord.</p>
-              </div>
-            </div>
-            <div class="help-item">
-              <div class="help-icon"><i class="fa-solid fa-bullhorn"></i></div>
-              <div>
-                <h4>Anuncios y eventos</h4>
-                <p>Entérate primero de novedades, actualizaciones y eventos de la comunidad.</p>
+                <h4>Problema personal o de cuenta</h4>
+                <p>Abre un ticket en Discord y el equipo te atenderá de forma privada.</p>
               </div>
             </div>
           </div>
-
         </div>
 
-        <!-- Preguntas frecuentes -->
+        <div class="support-discord">
+          <div class="support-discord-icon"><i class="fa-brands fa-discord"></i></div>
+          <div class="support-discord-text">
+            <h3>Nuestro Discord es el canal oficial de ayuda</h3>
+            <p>Ahí abres tickets, reportas jugadores o bugs y te enteras de anuncios, novedades y eventos.</p>
+          </div>
+          <a class="btn btn-discord" href="https://discord.gg/pgbjbspux6" target="_blank" rel="noopener noreferrer">
+            <i class="fa-brands fa-discord"></i> Entrar al Discord
+          </a>
+        </div>
+
         <div class="faq-block">
           <div class="section-heading" style="text-align:center;">
             <p class="eyebrow"><i class="fa-solid fa-circle-question"></i> Respuestas rápidas</p>
@@ -2035,19 +384,35 @@
           <div class="faq-list">
             <details class="faq-item">
               <summary>¿Cuál es la IP del servidor? <i class="fa-solid fa-plus"></i></summary>
-              <p>La IP es 169.40.54.3 y el puerto 25573. Puedes copiarla con un clic desde la página de inicio.</p>
+              <p>La IP y el puerto está en <strong>Mantenimiento.</strong><!-- y el puerto está en --><strong><!-- puerto --></strong> <!-- Puedes copiarlos con un clic en la tarjeta de conexión, al inicio de esta página y en la página de Inicio. --></p>
             </details>
             <details class="faq-item">
-              <summary>¿Puedo entrar desde Bedrock y Java? <i class="fa-solid fa-plus"></i></summary>
-              <p>Sí, el servidor es compatible con Java y Bedrock. En la página de inicio tienes la guía paso a paso para Bedrock.</p>
+              <summary>¿Qué versión de Minecraft necesito? <i class="fa-solid fa-plus"></i></summary>
+              <p>La versión oficial del servidor es <strong>1.21.11</strong>. Si juegas con otra versión, es posible que no puedas conectarte.</p>
+            </details>
+            <details class="faq-item">
+              <summary>¿Puedo entrar desde Java y desde Bedrock? <i class="fa-solid fa-plus"></i></summary>
+              <p>Sí. Ambas ediciones usan la misma IP y el mismo puerto (Mantenimiento). En Bedrock ve a Jugar → Servidores → Añadir servidor, y escribe la IP y el puerto en sus campos por separado.</p>
+            </details>
+            <details class="faq-item">
+              <summary>¿Cómo instalo el Pack de Mods? <i class="fa-solid fa-plus"></i></summary>
+              <p>Descárgalo desde la sección Pack de Mods y copia los archivos a la carpeta <strong>mods</strong> de tu Minecraft. Ahí mismo tienes los pasos completos.</p>
+            </details>
+            <details class="faq-item">
+              <summary>El juego se cierra al abrirlo, ¿qué hago? <i class="fa-solid fa-plus"></i></summary>
+              <p>Prueba esto en orden: confirma que usas la versión correcta de Minecraft, deja en la carpeta <strong>mods</strong> solo los archivos del pack y cierra otros programas pesados. Si continúa, abre un ticket en Discord y adjunta el archivo <strong>latest.log</strong> de la carpeta <strong>logs</strong> de tu Minecraft.</p>
             </details>
             <details class="faq-item">
               <summary>¿El Pack de Mods tiene costo? <i class="fa-solid fa-plus"></i></summary>
-              <p>No, el modpack y el acceso al servidor son completamente gratuitos.</p>
+              <p>No. El Pack de Mods y el acceso al servidor son completamente gratuitos.</p>
             </details>
             <details class="faq-item">
-              <summary>¿Cómo sé que el modpack es seguro? <i class="fa-solid fa-plus"></i></summary>
+              <summary>¿Cómo sé que el Pack de Mods es seguro? <i class="fa-solid fa-plus"></i></summary>
               <p>Puedes analizar el archivo tú mismo en VirusTotal. En la sección Pack de Mods encontrarás el enlace de verificación.</p>
+            </details>
+            <details class="faq-item">
+              <summary>¿Necesito registrarme o dar mis datos? <i class="fa-solid fa-plus"></i></summary>
+              <p>No. No hace falta registrarse y ni poner tu nombre de usuario. Los detalles están en la sección Política.</p>
             </details>
             <details class="faq-item">
               <summary>Tengo un problema y no sé qué hacer <i class="fa-solid fa-plus"></i></summary>
@@ -2059,12 +424,11 @@
       </div>
     </section>
 
-    <!-- 4. SECCIÓN: REGLAS -->
     <section class="page-section" id="reglas">
       <div class="container">
 
         <div class="section-heading">
-          <p class="eyebrow"><i class="fa-solid fa-scale-balanced"></i> Normativa Oficial</p>
+          <p class="eyebrow"><i class="fa-solid fa-scale-balanced"></i> Normativa oficial</p>
           <h2 class="section-title">Reglas del Servidor</h2>
           <p style="color:var(--text-muted); margin-top:12px;">
             Respeta las normas para mantener una convivencia sana y agradable para todos.
@@ -2075,7 +439,11 @@
           <div class="ri-icon"><i class="fa-solid fa-gavel"></i></div>
           <div>
             <strong>Juega limpio, juega tranquilo</strong>
-            <p>Al jugar en Nanovas te comprometes a cumplir estas 10 reglas. Las sanciones más graves están marcadas en cada tarjeta.</p>
+            <p>Al jugar en Nanovas te comprometes a cumplir estas 10 reglas. En cada una verás qué está permitido y qué no:</p>
+            <div class="rules-legend">
+              <span class="verdict-tag legal"><i class="fa-solid fa-check"></i> Legal</span> <span class="rules-legend-text">permitido</span>
+              <span class="verdict-tag illegal"><i class="fa-solid fa-xmark"></i> Ilegal</span> <span class="rules-legend-text">prohibido</span>
+            </div>
           </div>
         </div>
 
@@ -2091,101 +459,129 @@
           <article class="rule-card" data-cat="servidor">
             <div class="rule-top">
               <span class="rule-num">01</span>
-              <div class="rule-icon"><i class="fa-solid fa-shield-halved"></i></div>
-              <span class="rule-tag">Ban directo</span>
+              <div class="rule-icon"><i class="fa-solid fa-lock"></i></div>
+              <h3>Protecciones</h3>
             </div>
-            <h3>PROTECCIONES</h3>
-            <p>Todas tus construcciones deben estar protegidas con la piedra de protección. Si no proteges adecuadamente, no habrá reembolso por robo o grifeo de tus terrenos. El uso de errores/bugs para robar en zonas protegidas se sancionará con <strong>BAN DIRECTO SIN POSIBILIDAD DE APELAR</strong>.</p>
+            <p>Protege tus construcciones con la piedra de protección. Si no lo haces, no habrá reembolso por robo o grifeo.</p>
+            <ul class="rule-verdicts">
+              <li class="verdict legal"><span class="verdict-tag legal"><i class="fa-solid fa-check"></i> Legal</span><span class="verdict-text">Proteger tus terrenos con la piedra de protección.</span></li>
+              <li class="verdict illegal"><span class="verdict-tag illegal"><i class="fa-solid fa-xmark"></i> Ilegal</span><span class="verdict-text">Usar errores (bugs) para robar en zonas protegidas. Sanción: <strong>ban directo, sin posibilidad de apelar</strong>.</span></li>
+            </ul>
           </article>
 
           <article class="rule-card" data-cat="juego">
             <div class="rule-top">
               <span class="rule-num">02</span>
-              <div class="rule-icon"><i class="fa-solid fa-ban"></i></div>
-              
+              <div class="rule-icon"><i class="fa-solid fa-user-secret"></i></div>
+              <h3>Uso de hacks</h3>
             </div>
-            <h3>USO DE HACKS</h3>
-            <p>Queda estrictamente prohibido el uso de cualquier cliente modificado o hack (X-Ray, Fly, KillAura, Autoclick, etc.). Únicamente se permite el uso de OptiFine, Shaders, packs de texturas estéticos que no otorguen ventajas tácticas y el Pack de Mods oficial del servidor.</p>
+            <p>Solo se permiten mejoras visuales y el Pack de Mods oficial del servidor.</p>
+            <ul class="rule-verdicts">
+              <li class="verdict legal"><span class="verdict-tag legal"><i class="fa-solid fa-check"></i> Legal</span><span class="verdict-text">OptiFine, shaders, packs de texturas estéticos que no den ventajas tácticas y el Pack de Mods oficial.</span></li>
+              <li class="verdict illegal"><span class="verdict-tag illegal"><i class="fa-solid fa-xmark"></i> Ilegal</span><span class="verdict-text">Cualquier cliente modificado o hack: X-Ray, Fly, KillAura, Autoclick, etc.</span></li>
+            </ul>
           </article>
 
           <article class="rule-card" data-cat="juego">
             <div class="rule-top">
               <span class="rule-num">03</span>
               <div class="rule-icon"><i class="fa-solid fa-bug"></i></div>
-              <span class="rule-tag">Sanción permanente</span>
+              <h3>Duplicación y abuso de bugs</h3>
             </div>
-            <h3>DUPLICACIÓN Y ABUSO DE BUGS</h3>
-            <p>Si encuentras un error o bug en el servidor, debes reportarlo de inmediato en el Discord oficial. Recuerda que abusar de los mismos conllevará una sanción permanente sin opción de apelación. Todo tu progreso será eliminado (construcciones, protecciones, inventario y rangos).</p>
+            <p>Si encuentras un error en el servidor, repórtalo de inmediato en el Discord oficial.</p>
+            <ul class="rule-verdicts">
+              <li class="verdict legal"><span class="verdict-tag legal"><i class="fa-solid fa-check"></i> Legal</span><span class="verdict-text">Reportar el bug en Discord.</span></li>
+              <li class="verdict illegal"><span class="verdict-tag illegal"><i class="fa-solid fa-xmark"></i> Ilegal</span><span class="verdict-text">Duplicar ítems o abusar de un bug. Sanción: <strong>permanente y sin apelación</strong>; se elimina todo tu progreso (construcciones, protecciones, inventario y rangos).</span></li>
+            </ul>
           </article>
 
           <article class="rule-card" data-cat="juego">
             <div class="rule-top">
               <span class="rule-num">04</span>
               <div class="rule-icon"><i class="fa-solid fa-crosshairs"></i></div>
-              
+              <h3>PvP</h3>
             </div>
-            <h3>PVP</h3>
-            <p>El modo PVP se encuentra activado en el mundo Survival. Queda prohibido el TPAKill (teletransportar a un jugador con el fin de asesinarlo) o utilizar trampas con bugs para matar jugadores en zonas no autorizadas.</p>
+            <p>El PvP está activado en el mundo Survival.</p>
+            <ul class="rule-verdicts">
+              <li class="verdict legal"><span class="verdict-tag legal"><i class="fa-solid fa-check"></i> Legal</span><span class="verdict-text">Pelear contra otros jugadores en el mundo Survival.</span></li>
+              <!-- EDITAR: la regla original decía «en zonas no autorizadas» sin indicar cuáles. Si hay zonas concretas (spawn, zonas protegidas, etc.), nómbralas aquí. -->
+              <li class="verdict illegal"><span class="verdict-tag illegal"><i class="fa-solid fa-xmark"></i> Ilegal</span><span class="verdict-text">TPAKill (teletransportar a un jugador para matarlo) y usar trampas con bugs para matar jugadores.</span></li>
+            </ul>
           </article>
 
           <article class="rule-card" data-cat="convivencia">
             <div class="rule-top">
               <span class="rule-num">05</span>
               <div class="rule-icon"><i class="fa-solid fa-comments"></i></div>
-              
+              <h3>Respeto y convivencia</h3>
             </div>
-            <h3>RESPETO Y CONVIVENCIA</h3>
-            <p>Está totalmente prohibido insultar gravemente, acosar, ser tóxico, mostrar conductas racistas, homófobas o discriminar a cualquier jugador. Puedes debatir cualquier tema siempre y cuando se mantenga el respeto mutuo.</p>
+            <p>Puedes debatir cualquier tema mientras se mantenga el respeto mutuo.</p>
+            <ul class="rule-verdicts">
+              <li class="verdict legal"><span class="verdict-tag legal"><i class="fa-solid fa-check"></i> Legal</span><span class="verdict-text">Debatir y opinar con respeto.</span></li>
+              <li class="verdict illegal"><span class="verdict-tag illegal"><i class="fa-solid fa-xmark"></i> Ilegal</span><span class="verdict-text">Insultar gravemente, acosar, ser tóxico, tener conductas racistas u homófobas o discriminar a cualquier jugador.</span></li>
+            </ul>
           </article>
 
           <article class="rule-card" data-cat="convivencia">
             <div class="rule-top">
               <span class="rule-num">06</span>
-              <div class="rule-icon"><i class="fa-solid fa-user-shield"></i></div>
-              
+              <div class="rule-icon"><i class="fa-solid fa-hand-holding-dollar"></i></div>
+              <h3>Sobornar al Staff</h3>
             </div>
-            <h3>SOBORNAR AL STAFF</h3>
-            <p>Prohibido intentar sobornar a los miembros del equipo de Staff con dinero real, ítems del juego o favores a cambio de permisos, sanciones a otros usuarios o ventajas injustas. La sanción aplicará para todos los involucrados.</p>
+            <p>La sanción aplica a todos los involucrados.</p>
+            <ul class="rule-verdicts">
+              <li class="verdict illegal"><span class="verdict-tag illegal"><i class="fa-solid fa-xmark"></i> Ilegal</span><span class="verdict-text">Ofrecer dinero real, ítems del juego o favores al Staff a cambio de permisos, sanciones a otros usuarios o ventajas injustas.</span></li>
+            </ul>
           </article>
 
           <article class="rule-card" data-cat="convivencia">
             <div class="rule-top">
               <span class="rule-num">07</span>
               <div class="rule-icon"><i class="fa-solid fa-bullhorn"></i></div>
-              
+              <h3>Publicidad</h3>
             </div>
-            <h3>PUBLICIDAD</h3>
-            <p>Prohibido realizar publicidad de otros servidores de Minecraft, canales no autorizados, redes sociales o marcas ajenas a través del chat, carteles o mensajes privados.</p>
+            <p>Aplica al chat, a los carteles y a los mensajes privados.</p>
+            <ul class="rule-verdicts">
+              <li class="verdict illegal"><span class="verdict-tag illegal"><i class="fa-solid fa-xmark"></i> Ilegal</span><span class="verdict-text">Promocionar otros servidores de Minecraft, canales no autorizados, redes sociales o marcas ajenas.</span></li>
+            </ul>
           </article>
 
           <article class="rule-card" data-cat="servidor">
             <div class="rule-top">
               <span class="rule-num">08</span>
               <div class="rule-icon"><i class="fa-solid fa-server"></i></div>
-              
+              <h3>Granjas y rendimiento</h3>
             </div>
-            <h3>GRANJAS Y RENDIMIENTO</h3>
-            <p>Prohibido construir granjas o sistemas que generen lag severo en el servidor (relojes de redstone excesivos, granjas masivas sin límites). Dichas estructuras serán retiradas por la administración sin devolución de materiales.</p>
+            <p>La administración retira estas estructuras sin devolver los materiales.</p>
+            <ul class="rule-verdicts">
+              <li class="verdict illegal"><span class="verdict-tag illegal"><i class="fa-solid fa-xmark"></i> Ilegal</span><span class="verdict-text">Construir granjas o sistemas que generen lag severo, como relojes de redstone excesivos o granjas masivas sin límites.</span></li>
+            </ul>
           </article>
 
           <article class="rule-card" data-cat="convivencia">
             <div class="rule-top">
               <span class="rule-num">09</span>
               <div class="rule-icon"><i class="fa-solid fa-handshake-slash"></i></div>
-              
+              <h3>Comercio y estafas</h3>
             </div>
-            <h3>COMERCIO Y ESTAFAS</h3>
-            <p>Quedan prohibidas las estafas entre jugadores durante intercambios comerciales dentro del servidor.</p>
+            <p>Los intercambios entre jugadores deben ser honestos.</p>
+            <ul class="rule-verdicts">
+              <li class="verdict legal"><span class="verdict-tag legal"><i class="fa-solid fa-check"></i> Legal</span><span class="verdict-text">Comerciar con otros jugadores y cumplir lo acordado.</span></li>
+              <li class="verdict illegal"><span class="verdict-tag illegal"><i class="fa-solid fa-xmark"></i> Ilegal</span><span class="verdict-text">Estafar en un intercambio, por ejemplo recibir ítems o un pago y no entregar lo prometido.</span></li>
+            </ul>
           </article>
 
-          <article class="rule-card" data-cat="servidor">
+          <article class="rule-card" data-cat="juego">
             <div class="rule-top">
               <span class="rule-num">10</span>
               <div class="rule-icon"><i class="fa-solid fa-users"></i></div>
-              <span class="rule-tag ok">Permitido con condiciones</span>
+              <h3>Uso de multicuentas</h3>
             </div>
-            <h3>USO DE MULTICUENTAS</h3>
-            <p>Se permite el uso de multicuentas siempre y cuando no se utilicen para evadir una sanción impuesta previamente.</p>
+            <p>Puedes tener más de una cuenta, con una sola condición.</p>
+            <ul class="rule-verdicts">
+              <li class="verdict legal"><span class="verdict-tag legal"><i class="fa-solid fa-check"></i> Legal</span><span class="verdict-text">Usar multicuentas.</span></li>
+              <li class="verdict illegal"><span class="verdict-tag illegal"><i class="fa-solid fa-xmark"></i> Ilegal</span><span class="verdict-text">Usar una cuenta alterna para evadir una sanción impuesta previamente.</span></li>
+            </ul>
           </article>
 
         </div>
@@ -2200,101 +596,16 @@
       </div>
     </section>
 
-    <!-- 5. SECCIÓN: REDES SOCIALES (INFLUENCER) -->
-    <section class="page-section" id="redes">
-      <div class="container">
-
-        <div class="section-heading">
-          <p class="eyebrow"><i class="fa-solid fa-star"></i> Contenido y Directos</p>
-          <h2 class="section-title">Mis Redes Sociales</h2>
-          <p style="color:var(--text-muted); margin-top:12px;">
-            Sígueme en mis redes sociales para no perderte ningún directo, video y novedades del servidor.
-          </p>
-        </div>
-
-        <div class="soc-profile">
-          <div class="soc-avatar"><img alt="Nanachandg" src="data:image/jpeg;base64,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"></div>
-          <div>
-            <h3>Nanachandg</h3>
-            <p>Influencer y creadora de la comunidad Nanovas Minecraft. Encuéntrame en todas mis plataformas.</p>
-          </div>
-        </div>
-
-        <div class="soc-grid">
-
-          <a class="soc-card social-discord wide" href="https://discord.gg/pgbjbspux6" target="_blank" rel="noopener noreferrer">
-            <div class="social-icon"><i class="fa-brands fa-discord"></i></div>
-            <div class="soc-body">
-              <h3>Discord Comunidad</h3>
-              <p>Servidor Nanovas | Eventos y Soporte 24/7</p>
-              <span class="soc-live"><i></i><span id="soc-dc-text">Comunidad en Discord</span></span>
-            </div>
-            <span class="soc-cta">Unirme <i class="fa-solid fa-arrow-up-right-from-square"></i></span>
-          </a>
-
-          <a class="soc-card social-tiktok" href="https://www.tiktok.com/@nanachandg" target="_blank" rel="noopener noreferrer">
-            <div class="soc-top">
-              <div class="social-icon"><i class="fa-brands fa-tiktok"></i></div>
-              <span class="soc-kind">Videos</span>
-            </div>
-            <div class="soc-body">
-              <h3>TikTok Oficial</h3>
-              <p>@nanachandg</p>
-            </div>
-            <span class="soc-cta">Seguir <i class="fa-solid fa-arrow-up-right-from-square"></i></span>
-          </a>
-
-          <a class="soc-card social-twitch" href="https://www.twitch.tv/nanachandg" target="_blank" rel="noopener noreferrer">
-            <div class="soc-top">
-              <div class="social-icon"><i class="fa-brands fa-twitch"></i></div>
-              <span class="soc-kind">Directos</span>
-            </div>
-            <div class="soc-body">
-              <h3>Twitch</h3>
-              <p>nanachandg</p>
-            </div>
-            <span class="soc-cta">Seguir <i class="fa-solid fa-arrow-up-right-from-square"></i></span>
-          </a>
-
-          <a class="soc-card social-instagram" href="https://www.instagram.com/nanalassodesigner" target="_blank" rel="noopener noreferrer">
-            <div class="soc-top">
-              <div class="social-icon"><i class="fa-brands fa-instagram"></i></div>
-              <span class="soc-kind">Fotos</span>
-            </div>
-            <div class="soc-body">
-              <h3>Instagram</h3>
-              <p>@nanalassodesigner</p>
-            </div>
-            <span class="soc-cta">Seguir <i class="fa-solid fa-arrow-up-right-from-square"></i></span>
-          </a>
-
-          <a class="soc-card social-kick" href="https://kick.com/nanachandg" target="_blank" rel="noopener noreferrer">
-            <div class="soc-top">
-              <div class="social-icon"><span class="kick-text">K</span></div>
-              <span class="soc-kind">Directos</span>
-            </div>
-            <div class="soc-body">
-              <h3>Kick Stream</h3>
-              <p>nanachandg</p>
-            </div>
-            <span class="soc-cta">Seguir <i class="fa-solid fa-arrow-up-right-from-square"></i></span>
-          </a>
-
-        </div>
-
-      </div>
-    </section>
-
-    <!-- 6. SECCIÓN: POLÍTICA Y LEGAL -->
     <section class="page-section" id="politica">
       <div class="container">
 
         <div class="section-heading">
-          <p class="eyebrow"><i class="fa-solid fa-scale-balanced"></i> Términos Legales</p>
+          <p class="eyebrow"><i class="fa-solid fa-file-contract"></i> Términos legales</p>
           <h2 class="section-title">Política y Privacidad</h2>
           <p style="color:var(--text-muted); margin-top:12px;">
-            Información sobre la gratuidad y el contenido libre de Nanovas.
+            Qué puedes hacer con el contenido de Nanovas, qué datos usa este sitio y cómo contactarnos.
           </p>
+          <p class="pol-updated"><i class="fa-regular fa-calendar"></i> Última actualización: <time datetime="2026-10-22">22 de octubre de 2026</time></p>
         </div>
 
         <div class="pol-layout">
@@ -2304,52 +615,80 @@
             <div class="pol-badges">
               <div class="pol-badge"><i class="fa-solid fa-circle-check"></i> 100% gratuito</div>
               <div class="pol-badge"><i class="fa-solid fa-circle-check"></i> Sin registro obligatorio</div>
-              <div class="pol-badge"><i class="fa-solid fa-circle-check"></i> Sin datos sensibles</div>
               <div class="pol-badge"><i class="fa-solid fa-circle-check"></i> Verificable en VirusTotal</div>
             </div>
             <h3>Contenido</h3>
-            <ul class="pol-toc"><li><a href="#pol-1" data-pol="pol-1"><b>01</b> Contenido Gratuito</a></li><li><a href="#pol-2" data-pol="pol-2"><b>02</b> Uso y Distribución</a></li><li><a href="#pol-3" data-pol="pol-3"><b>03</b> Compatibilidad</a></li><li><a href="#pol-4" data-pol="pol-4"><b>04</b> Privacidad</a></li><li><a href="#pol-5" data-pol="pol-5"><b>05</b> Marca Registrada</a></li></ul>
+            <ul class="pol-toc"><li><a href="#pol-1" data-pol="pol-1"><b>01</b> Contenido gratuito</a></li><li><a href="#pol-2" data-pol="pol-2"><b>02</b> Reglas del servidor</a></li><li><a href="#pol-3" data-pol="pol-3"><b>03</b> Uso y distribución</a></li><li><a href="#pol-4" data-pol="pol-4"><b>04</b> Compatibilidad</a></li><li><a href="#pol-5" data-pol="pol-5"><b>05</b> Mods de terceros</a></li><li><a href="#pol-6" data-pol="pol-6"><b>06</b> Privacidad</a></li><li><a href="#pol-7" data-pol="pol-7"><b>08</b> Marca registrada</a></li><li><a href="#pol-8" data-pol="pol-8"><b>09</b> Contacto</a></li></ul>
           </aside>
 
           <div class="pol-list">
             <article class="pol-card" id="pol-1">
               <div class="pol-card-head">
                 <div class="pol-card-icon"><i class="fa-solid fa-gift"></i></div>
-                <h3>1. Contenido Gratuito</h3>
+                <h3>1. Contenido gratuito</h3>
               </div>
-              <p>El Pack de Mods Nanovas y el acceso al servidor son completamente gratuitos. No cobramos tarifas por su descarga, instalación o acceso básico.</p>
+              <p>El Pack de Mods Nanovas y el acceso al servidor son completamente gratuitos. No cobramos por su descarga, instalación ni acceso básico.</p>
             </article>
 
             <article class="pol-card" id="pol-2">
               <div class="pol-card-head">
-                <div class="pol-card-icon"><i class="fa-solid fa-share-nodes"></i></div>
-                <h3>2. Uso y Distribución</h3>
+                <div class="pol-card-icon"><i class="fa-solid fa-gavel"></i></div>
+                <h3>2. Reglas del servidor</h3>
               </div>
-              <p>Puedes utilizar el pack de mods para uso estrictamente personal. No está permitida la reventa o redistribución no autorizada del contenido.</p>
+              <p>Para jugar en Nanovas debes cumplir las <a class="pol-link" href="#" data-target="reglas">Reglas del servidor</a>. Si las incumples, el equipo puede aplicar sanciones, incluso la expulsión permanente.</p>
             </article>
 
             <article class="pol-card" id="pol-3">
               <div class="pol-card-head">
-                <div class="pol-card-icon"><i class="fa-solid fa-puzzle-piece"></i></div>
-                <h3>3. Compatibilidad</h3>
+                <div class="pol-card-icon"><i class="fa-solid fa-share-nodes"></i></div>
+                <h3>3. Uso y distribución</h3>
               </div>
-              <p>El pack de mods se entrega "tal cual". Procuramos mantener la máxima compatibilidad con Minecraft 1.21 / 26.1.2, pero no garantizamos el funcionamiento con otros mods externos no verificados.</p>
+              <p>Puedes usar el Pack de Mods para tu uso personal. No está permitida su reventa ni su redistribución sin autorización. Esta restricción se refiere al pack armado por Nanovas; cada mod incluido conserva su propia licencia (ver punto 5).</p>
             </article>
 
             <article class="pol-card" id="pol-4">
               <div class="pol-card-head">
-                <div class="pol-card-icon"><i class="fa-solid fa-user-lock"></i></div>
-                <h3>4. Privacidad</h3>
+                <div class="pol-card-icon"><i class="fa-solid fa-code-branch"></i></div>
+                <h3>4. Compatibilidad</h3>
               </div>
-              <p>No recopilamos información personal sensible. No requerimos formularios de registro obligatorios para la descarga de mods. Puedes analizar nuestros archivos en <a class="vt-inline" href="https://www.virustotal.com/" target="_blank" rel="noopener noreferrer">virustotal.com</a> para tu tranquilidad.</p>
+              <p>La versión oficial del servidor es Minecraft 1.21.11. El Pack de Mods se entrega «tal cual» y procuramos mantener la máxima compatibilidad con Minecraft 26.1.2 / 1.21, pero no garantizamos que funcione con otros mods externos no verificados.</p>
             </article>
 
             <article class="pol-card" id="pol-5">
               <div class="pol-card-head">
-                <div class="pol-card-icon"><i class="fa-solid fa-copyright"></i></div>
-                <h3>5. Marca Registrada</h3>
+                <div class="pol-card-icon"><i class="fa-solid fa-puzzle-piece"></i></div>
+                <h3>5. Mods de terceros</h3>
               </div>
-              <p>Minecraft es una marca registrada de Mojang Studios y Microsoft. Nanovas es una comunidad de jugadores independiente y no está afiliada de manera oficial con Mojang Studios ni Microsoft.</p>
+              <p>El pack incluye mods creados por otras personas. Cada mod pertenece a su autor y se rige por su propia licencia; Nanovas no se atribuye su creación y reconoce el trabajo de sus desarrolladores. Los créditos y las condiciones de cada mod están en su página oficial.</p>
+              <!-- EDITAR: agrega aquí la lista de mods incluidos con su autor y enlace, y revisa que cada licencia permita incluirlos en el pack. -->
+              <p>El uso de mods es bajo tu propia responsabilidad. Nanovas no se hace responsable de fallos, pérdida de datos o daños en tu equipo o tus partidas derivados del uso de mods, ya sean del pack o externos.</p>
+            </article>
+
+            <article class="pol-card" id="pol-6">
+              <div class="pol-card-head">
+                <div class="pol-card-icon"><i class="fa-solid fa-user-lock"></i></div>
+                <h3>6. Privacidad</h3>
+              </div>
+              <p>No pedimos registro ni formularios para descargar el pack. No recopilamos ni guardamos tu IP ni tu nombre de usuario. Puedes analizar nuestros archivos en <a class="vt-inline" href="https://www.virustotal.com/" target="_blank" rel="noopener noreferrer">virustotal.com</a> para tu tranquilidad.</p>
+            </article>
+
+            <article class="pol-card" id="pol-7">
+              <div class="pol-card-head">
+                <div class="pol-card-icon"><i class="fa-solid fa-copyright"></i></div>
+                <h3>7. Marca registrada</h3>
+              </div>
+              <p>Minecraft es una marca registrada de Mojang Studios y Microsoft. Nanovas es una comunidad de jugadores independiente y no está afiliada oficialmente con Mojang Studios ni con Microsoft.</p>
+            </article>
+
+            <article class="pol-card" id="pol-8">
+              <div class="pol-card-head">
+                <div class="pol-card-icon"><i class="fa-solid fa-envelope"></i></div>
+                <h3>8. Contacto</h3>
+              </div>
+              <p>Si tienes dudas sobre esta política o quieres reportar algo, escríbenos en nuestro Discord oficial.</p>
+              <a class="btn btn-discord pol-contact-btn" href="https://discord.gg/pgbjbspux6" target="_blank" rel="noopener noreferrer">
+                <i class="fa-brands fa-discord"></i> Contactar por Discord
+              </a>
             </article>
 
           </div>
@@ -2360,350 +699,13 @@
     </section>
 
   </main>
-
-  <!-- ==========================================================================
-       FOOTER
-       ========================================================================== -->
+  
   <footer>
     <div class="container">
       &copy; <span id="year"></span> <strong>Nanovas Minecraft</strong>. Todos los derechos reservados.
     </div>
   </footer>
 
-  <!-- ==========================================================================
-       SCRIPTS Y LÓGICA INTERACTIVA
-       ========================================================================== -->
-  <script>
-    // IP del Servidor de Minecraft (Sin espacios adicionales para la API)
-    const SERVER_IP = "169.40.54.3:25573";
-
-    // Comportamiento de scroll según el interruptor de animaciones
-    function smoothBehavior() {
-      return document.documentElement.classList.contains("no-anim") ? "auto" : "smooth";
-    }
-
-    // fetch con tiempo límite (evita peticiones colgadas)
-    function fetchWithTimeout(url, ms = 8000) {
-      const ctrl = new AbortController();
-      const timer = setTimeout(() => ctrl.abort(), ms);
-      return fetch(url, { cache: "no-store", signal: ctrl.signal }).finally(() => clearTimeout(timer));
-    }
-
-    // Elementos DOM
-    const ipText = document.getElementById("ip-text");
-    const copyButton = document.getElementById("copy-button");
-    const playersElement = document.getElementById("players");
-    const yearElement = document.getElementById("year");
-    
-    const sections = document.querySelectorAll(".page-section");
-    const navLinks = document.querySelectorAll("[data-target]");
-    const mobileToggleBtn = document.getElementById("mobile-toggle-btn");
-    const navMenu = document.getElementById("nav-menu");
-
-    // Enlace del informe de VirusTotal del modpack (pega aquí tu enlace de resultados)
-    const VIRUSTOTAL_URL = "https://www.virustotal.com/";
-    const vtLink = document.getElementById("vt-link");
-    if (vtLink) vtLink.href = VIRUSTOTAL_URL;
-    document.querySelectorAll(".vt-inline").forEach(a => a.href = VIRUSTOTAL_URL);
-
-    // Inicializar IP y Año
-    if (ipText) ipText.textContent = SERVER_IP;
-    if (yearElement) yearElement.textContent = new Date().getFullYear();
-
-    // Función para copiar la IP al portapapeles
-    if (copyButton) {
-      copyButton.addEventListener("click", () => {
-        // Método seguro para iFrames y Navegadores
-        const textArea = document.createElement("textarea");
-        textArea.value = SERVER_IP;
-        document.body.appendChild(textArea);
-        textArea.select();
-        
-        try {
-          document.execCommand('copy');
-          copyButton.innerHTML = `<i class="fa-solid fa-check"></i> ¡Copiado!`;
-        } catch (err) {
-          copyButton.innerHTML = `<i class="fa-solid fa-xmark"></i> Error`;
-        }
-        
-        document.body.removeChild(textArea);
-
-        setTimeout(() => {
-          copyButton.innerHTML = `<i class="fa-solid fa-copy"></i> Copiar IP`;
-        }, 2200);
-      });
-    }
-
-    // ==========================================================================
-    // ESTADO DEL SERVIDOR EN TIEMPO REAL (API mcsrvstat.us)
-    // Prueba primero como servidor Java y, si no responde, como Bedrock.
-    // Se actualiza solo cada 30 segundos.
-    // ==========================================================================
-    const REFRESH_MS = 30000;
-    const statusPill = document.getElementById("status-pill");
-    const statusText = document.getElementById("status-text");
-    const playersMax = document.getElementById("players-max");
-    const playersBar = document.getElementById("players-bar");
-    const scMotd = document.getElementById("sc-motd");
-    const scVersion = document.getElementById("sc-version");
-    const scUpdated = document.getElementById("sc-updated");
-    const scRefresh = document.getElementById("sc-refresh");
-
-    function setStatus(state, label) {
-      if (!statusPill) return;
-      statusPill.className = "status-pill " + state;
-      statusText.textContent = label;
-    }
-
-    async function queryApi(path) {
-      const res = await fetchWithTimeout(`https://api.mcsrvstat.us/${path}${SERVER_IP}`);
-      if (!res.ok) throw new Error("HTTP " + res.status);
-      return res.json();
-    }
-
-    async function fetchServerStatus() {
-      if (!playersElement) return;
-      if (scRefresh) scRefresh.classList.add("spin");
-
-      try {
-        let data = await queryApi("3/");
-        if (!data.online) {
-          try {
-            const bedrock = await queryApi("bedrock/3/");
-            if (bedrock.online) data = bedrock;
-          } catch (_) { /* se mantiene el resultado Java */ }
-        }
-
-        if (data.online) {
-          const online = data.players && Number.isFinite(data.players.online) ? data.players.online : 0;
-          const max = data.players && Number.isFinite(data.players.max) ? data.players.max : 0;
-
-          setStatus("online", "ONLINE");
-          playersElement.textContent = online;
-          playersMax.textContent = max || "–";
-          playersBar.style.width = max ? Math.min(100, (online / max) * 100) + "%" : "0%";
-
-          const motd = data.motd && data.motd.clean ? data.motd.clean.join(" ").trim() : "";
-          scMotd.textContent = motd || "Servidor disponible";
-          if (data.version) scVersion.textContent = String(data.version).replace(/^[^\d]*/, "") || data.version;
-        } else {
-          setStatus("offline", "OFFLINE");
-          playersElement.textContent = "0";
-          playersBar.style.width = "0%";
-          scMotd.textContent = "El servidor no está disponible ahora";
-        }
-
-        scUpdated.textContent = "Última actualización: " + new Date().toLocaleTimeString("es-AR", { hour: "2-digit", minute: "2-digit", second: "2-digit" });
-      } catch (e) {
-        setStatus("offline", "SIN DATOS");
-        scMotd.textContent = "No se pudo consultar el estado";
-        scUpdated.textContent = "Reintentando en 30 s…";
-      } finally {
-        if (scRefresh) scRefresh.classList.remove("spin");
-      }
-    }
-
-    fetchServerStatus();
-    setInterval(() => { if (!document.hidden) fetchServerStatus(); }, REFRESH_MS);
-    if (scRefresh) scRefresh.addEventListener("click", fetchServerStatus);
-
-    // Botón "Cómo entrar": baja suavemente a la guía
-    const goGuide = document.getElementById("go-guide");
-    if (goGuide) {
-      goGuide.addEventListener("click", (e) => {
-        e.stopPropagation();
-        e.preventDefault();
-        document.getElementById("guia-bedrock").scrollIntoView({ behavior: smoothBehavior() });
-      }, true);
-    }
-
-    // ==========================================================================
-    // DISCORD EN TIEMPO REAL (API pública de invitaciones de Discord)
-    // Solo necesita el código de la invitación. Se actualiza cada 60 segundos.
-    // ==========================================================================
-    const DISCORD_INVITE = "pgbjbspux6";   // código de tu invitación (discord.gg/CODIGO)
-    const dcMembers = document.getElementById("dc-members");
-    const dcOnline = document.getElementById("dc-online");
-    const dcName = document.getElementById("dc-name");
-    const dcLogo = document.getElementById("dc-logo");
-    const dcUpdated = document.getElementById("dc-updated");
-    const dcJoin = document.getElementById("dc-join");
-    if (dcJoin) dcJoin.href = "https://discord.gg/" + DISCORD_INVITE;
-
-    async function fetchDiscordStats() {
-      if (!dcMembers) return;
-      try {
-        const res = await fetchWithTimeout(`https://discord.com/api/v9/invites/${DISCORD_INVITE}?with_counts=true`);
-        if (!res.ok) throw new Error("HTTP " + res.status);
-        const data = await res.json();
-
-        dcMembers.textContent = Number(data.approximate_member_count || 0).toLocaleString("es-AR");
-        dcOnline.textContent = Number(data.approximate_presence_count || 0).toLocaleString("es-AR");
-
-        if (data.guild) {
-          if (data.guild.name) dcName.textContent = data.guild.name;
-          if (data.guild.icon) {
-            dcLogo.innerHTML = `<img alt="Logo de Discord" src="https://cdn.discordapp.com/icons/${data.guild.id}/${data.guild.icon}.png?size=128">`;
-          }
-        }
-        const socDc = document.getElementById("soc-dc-text");
-        if (socDc) socDc.textContent = Number(data.approximate_member_count || 0).toLocaleString("es-AR") + " miembros · " + Number(data.approximate_presence_count || 0).toLocaleString("es-AR") + " en línea";
-        dcUpdated.textContent = "Última actualización: " + new Date().toLocaleTimeString("es-AR", { hour: "2-digit", minute: "2-digit", second: "2-digit" });
-      } catch (e) {
-        dcUpdated.textContent = "No se pudo consultar Discord. Reintentando…";
-      }
-    }
-
-    fetchDiscordStats();
-    setInterval(() => { if (!document.hidden) fetchDiscordStats(); }, 60000);
-
-    // Filtros de la sección Reglas
-    const ruleFilters = document.querySelectorAll(".rule-filter");
-    const ruleCards = document.querySelectorAll(".rule-card");
-    ruleFilters.forEach(btn => {
-      btn.addEventListener("click", () => {
-        const f = btn.dataset.filter;
-        ruleFilters.forEach(b => b.classList.toggle("active", b === btn));
-        ruleCards.forEach(card => card.classList.toggle("hidden", f !== "all" && card.dataset.cat !== f));
-      });
-    });
-
-    // Índice de Política: scroll suave y resaltado
-    document.querySelectorAll(".pol-toc a").forEach(a => {
-      a.addEventListener("click", (e) => {
-        e.preventDefault();
-        const t = document.getElementById(a.dataset.pol);
-        if (t) t.scrollIntoView({ behavior: smoothBehavior(), block: "start" });
-      });
-    });
-    if ("IntersectionObserver" in window) {
-      const polObserver = new IntersectionObserver((entries) => {
-        entries.forEach(en => {
-          if (en.isIntersecting) {
-            document.querySelectorAll(".pol-toc a").forEach(a => a.classList.toggle("active", a.dataset.pol === en.target.id));
-          }
-        });
-      }, { rootMargin: "-30% 0px -60% 0px" });
-      document.querySelectorAll(".pol-card").forEach(c => polObserver.observe(c));
-    }
-
-    // Cambio de Secciones Pestañas
-    function showSection(targetId) {
-      const targetSection = document.getElementById(targetId);
-      if (!targetSection) return;
-
-      sections.forEach(sec => sec.classList.remove("active"));
-      targetSection.classList.add("active");
-
-      // Actualizar enlace activo en la navegación
-      document.querySelectorAll(".nav-link").forEach(link => {
-        link.classList.toggle("active", link.dataset.target === targetId);
-      });
-
-      // Cerrar menú móvil si está abierto
-      if (navMenu.classList.contains("active")) {
-        navMenu.classList.remove("active");
-      }
-
-      window.scrollTo({ top: 0, behavior: smoothBehavior() });
-    }
-
-    navLinks.forEach(link => {
-      link.addEventListener("click", (e) => {
-        e.preventDefault();
-        const target = link.dataset.target;
-        if (target) showSection(target);
-      });
-    });
-
-    // Menú Hamburguesa Móvil
-    if (mobileToggleBtn && navMenu) {
-      mobileToggleBtn.addEventListener("click", () => {
-        navMenu.classList.toggle("active");
-      });
-    }
-
-    // ==========================================================================
-    // TEMAS DE COLOR (16 opciones, sin verde)
-    // ==========================================================================
-    const THEMES = [["red", "Rojo Carmesí", "#ff2d55"], ["rose", "Rubí", "#e11d48"], ["coral", "Coral", "#ff6b4a"], ["orange", "Naranja", "#fb923c"], ["amber", "Ámbar Dorado", "#f59e0b"], ["gold", "Amarillo", "#facc15"], ["pink", "Rosa Neón", "#ff4fa3"], ["fuchsia", "Fucsia", "#d946ef"], ["purple", "Púrpura", "#a855f7"], ["violet", "Violeta", "#8b5cf6"], ["indigo", "Índigo", "#6366f1"], ["royal", "Azul Rey", "#3b6cff"], ["blue", "Azul Neón", "#00d2ff"], ["sky", "Celeste", "#7dd3fc"], ["silver", "Plata", "#cbd5e1"], ["lilac", "Lavanda", "#c4b5fd"]];
-    const themeDropdown = document.getElementById("theme-dropdown");
-    const themeToggleBtn = document.getElementById("theme-toggle-btn");
-
-    function buildThemePicker() {
-      if (!themeDropdown) return;
-      const frag = document.createDocumentFragment();
-      const title = document.createElement("p");
-      title.className = "theme-title";
-      title.textContent = "Color del tema";
-      frag.appendChild(title);
-
-      const grid = document.createElement("div");
-      grid.className = "theme-grid";
-      THEMES.forEach(([key, label, hex]) => {
-        const btn = document.createElement("button");
-        btn.type = "button";
-        btn.className = "theme-swatch";
-        btn.dataset.theme = key;
-        btn.title = label;
-        btn.style.setProperty("--c", hex);
-        btn.innerHTML = `<i></i><span>${label}</span>`;
-        btn.addEventListener("click", () => { setTheme(key, label); themeDropdown.classList.remove("show"); });
-        grid.appendChild(btn);
-      });
-      frag.appendChild(grid);
-      themeDropdown.appendChild(frag);
-    }
-
-    function setTheme(themeKey, themeLabel) {
-      const found = THEMES.find(t => t[0] === themeKey) || THEMES[0];
-      themeKey = found[0];
-      themeLabel = found[1];
-
-      document.documentElement.setAttribute("data-theme", themeKey);
-      const themeNameEl = document.getElementById("theme-name");
-      if (themeNameEl) themeNameEl.textContent = themeLabel;
-      document.querySelectorAll(".theme-swatch").forEach(b => b.classList.toggle("active", b.dataset.theme === themeKey));
-
-      try { localStorage.setItem("nanovas_theme", themeKey); } catch (e) {}
-    }
-
-    buildThemePicker();
-    let savedTheme = "red";
-    try { savedTheme = localStorage.getItem("nanovas_theme") || "red"; } catch (e) {}
-    setTheme(savedTheme);
-
-    // Abrir/cerrar el selector con clic (móvil) y al tocar fuera
-    if (themeToggleBtn && themeDropdown) {
-      themeToggleBtn.addEventListener("click", (e) => { e.stopPropagation(); themeDropdown.classList.toggle("show"); });
-      document.addEventListener("click", (e) => { if (!themeDropdown.contains(e.target)) themeDropdown.classList.remove("show"); });
-    }
-
-    // ==========================================================================
-    // INTERRUPTOR DE ANIMACIONES (guarda la preferencia)
-    // ==========================================================================
-    const animBtn = document.getElementById("anim-toggle-btn");
-    function applyAnim(on) {
-      document.documentElement.classList.toggle("no-anim", !on);
-      if (animBtn) {
-        animBtn.setAttribute("aria-pressed", on ? "true" : "false");
-        animBtn.title = on ? "Animaciones activadas (clic para desactivar)" : "Animaciones desactivadas (clic para activar)";
-      }
-    }
-    applyAnim(!document.documentElement.classList.contains("no-anim"));
-    if (animBtn) {
-      animBtn.addEventListener("click", () => {
-        const turnOn = document.documentElement.classList.contains("no-anim");
-        applyAnim(turnOn);
-        try { localStorage.setItem("nanovas_anim", turnOn ? "on" : "off"); } catch (e) {}
-      });
-    }
-
-    // Ahorro de recursos: pausa animaciones con la pestaña oculta y actualiza datos al volver
-    document.addEventListener("visibilitychange", () => {
-      document.documentElement.classList.toggle("tab-hidden", document.hidden);
-      if (!document.hidden) { fetchServerStatus(); fetchDiscordStats(); }
-    });
-  </script>
+  <script src="js/script.js"></script>
 </body>
 </html>
