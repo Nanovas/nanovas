@@ -30,14 +30,12 @@
     }).finally(() => window.clearTimeout(timer));
   }
 
-  // Año del pie de página.
   const yearElement = $("#year");
 
   if (yearElement) {
     yearElement.textContent = String(new Date().getFullYear());
   }
 
-  // Enlaces de VirusTotal.
   const vtLink = $("#vt-link");
 
   if (vtLink) {
@@ -48,14 +46,12 @@
     link.href = VIRUSTOTAL_URL;
   });
 
-  // Copiar IP, puerto o dirección completa.
   async function copyText(value) {
     if (navigator.clipboard && window.isSecureContext) {
       await navigator.clipboard.writeText(value);
       return;
     }
 
-    // Alternativa para navegadores sin Clipboard API.
     const textarea = document.createElement("textarea");
 
     textarea.value = value;
@@ -121,8 +117,6 @@
     });
   });
 
-  // Estadísticas aproximadas de Discord.
-  // No se consulta la API de estado de Minecraft.
   const dcMembers = $("#dc-members");
   const dcOnline = $("#dc-online");
 
@@ -148,7 +142,6 @@
         dcOnline.textContent = online.toLocaleString("es-AR");
       }
     } catch (_) {
-      // Si Discord no responde, se conservan los valores iniciales.
     }
   }
 
@@ -160,7 +153,6 @@
     }
   }, DISCORD_REFRESH_MS);
 
-  // Pausar actualizaciones cuando la pestaña está oculta.
   document.addEventListener("visibilitychange", () => {
     document.documentElement.classList.toggle(
       "tab-hidden",
@@ -182,7 +174,6 @@
     }
   });
 
-  // Imagen de perfil: si falta nana.jpg, se conserva el texto alternativo.
   const hscImg = $(".hsc-avatar img");
 
   if (hscImg) {
@@ -197,7 +188,6 @@
     }
   }
 
-  // Filtros de categorías de reglas.
   const ruleFilters = $$(".rule-filter");
   const ruleCards = $$(".rule-card");
 
@@ -224,7 +214,6 @@
     });
   });
 
-  // Navegación dentro de la sección de Política.
   $$(".pol-toc a").forEach(link => {
     link.addEventListener("click", event => {
       event.preventDefault();
@@ -243,7 +232,6 @@
     });
   });
 
-  // Detectar la sección de Política visible.
   if ("IntersectionObserver" in window) {
     const policyCards = $$(".pol-card");
 
@@ -272,7 +260,6 @@
     }
   }
 
-  // Navegación principal y menú móvil.
   const sections = $$(".page-section");
   const navLinks = $$("[data-target]");
   const mobileToggleBtn = $("#mobile-toggle-btn");
@@ -335,7 +322,6 @@
     });
   }
 
-  // Temas de colores.
   const THEMES = [
     ["red", "Rojo Carmesí", "#ff2d55"],
     ["rose", "Rubí", "#e11d48"],
@@ -382,7 +368,6 @@
     try {
       window.localStorage.setItem("nanovas_theme", key);
     } catch (_) {
-      // El almacenamiento local puede estar deshabilitado.
     }
   }
 
@@ -468,7 +453,6 @@
     });
   }
 
-  // Preferencia de animaciones.
   const animBtn = $("#anim-toggle-btn");
 
   function applyAnim(enabled) {
